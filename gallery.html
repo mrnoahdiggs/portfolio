@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./nav.js"></script>
 </head>
 <body>
 <x-dc>
@@ -13,7 +14,7 @@
 <style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}</style>
 </helmet>
 
-<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Gallery" logoSrc="brand/ngjd-logo.svg" onSelect="{{ noop }}" hint-size="100%,88px"></x-import>
+<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Gallery" logoSrc="brand/ngjd-logo.svg" onSelect="{{ window.dcNav.navigateTo }}" hint-size="100%,88px"></x-import>
 
 <main>
 
@@ -48,7 +49,7 @@
   <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ ctaCardStyle }}" hint-size="auto,auto">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
       <p style="font:var(--text-h3);color:var(--color-text);margin:0;max-width:560px">Looking to elevate your music department?<br>Let's bring student creativity to center stage!</p>
-      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Download CV</x-import>
+      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" onClick="{{ goContact }}" hint-size="auto,54px">Download CV</x-import>
     </div>
   </x-import>
 </section>
@@ -97,7 +98,8 @@ class Component extends DCLogic {
   renderVals() {
     return {
       navLinks: ['Home', 'About', 'Gallery', 'Testimonials', 'MUN', 'Contact'],
-      noop: () => {},
+      window: window,
+      goContact: () => window.dcNav.navigateTo('Contact'),
       featuredStyle: { width: '100%' },
       tabs: this.TABS.map(t => {
         const active = this.state.activeTab === t.id;
