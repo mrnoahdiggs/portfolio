@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="stylesheet" href="ds/styles.css">
+<script src="./image-slot.js"></script>
+<style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}</style>
+</helmet>
+
+<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Home" logoSrc="brand/ngjd-logo.svg" onSelect="{{ noop }}" hint-size="100%,88px"></x-import>
+
+<main>
+
+<section class="hero" style="position:relative;overflow:hidden">
+  <image-slot id="hero-media" shape="rect" style="width:100%;height:560px" placeholder="Drop hero video/photo: Noah conducting a rehearsal"></image-slot>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(36,28,21,0) 30%, rgba(36,28,21,.78) 100%);pointer-events:none"></div>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:48px 56px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:640px">
+      <p style="font:var(--text-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--white);opacity:.9;margin:0">International Music Educator · Composer</p>
+      <p style="font:var(--text-display);color:var(--white);margin:0">Noah Diggs</p>
+      <p style="font:var(--text-body-lg);color:var(--white);opacity:.9;margin:0">Connecting students to the world through music-making</p>
+    </div>
+    <div style="display:flex;gap:12px;flex:none">
+      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Watch Teaching Reel</x-import>
+      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="lg" hint-size="auto,54px">Contact</x-import>
+    </div>
+  </div>
+</section>
+
+<section style="padding:var(--space-8) 56px;background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:center;gap:40px">
+      <image-slot id="headshot" shape="circle" style="width:140px;height:140px;flex:none" src="https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,w_280/noah-diggs-portfolio/headshot" placeholder="Drop headshot"></image-slot>
+      <p style="font:var(--text-body-lg);color:var(--color-text);max-width:760px;margin:0"><b>Noah Gabriel Juliano Diggs</b> is an international music educator crafting immersive, interactive learning experiences for young global citizens.</p>
+    </div>
+    <div style="display:flex;gap:16px;max-width:820px;margin-left:180px">
+      <span style="font:700 64px/1 var(--font-serif);color:var(--color-primary);flex:none">&ldquo;</span>
+      <p style="font:italic 400 22px/1.6 var(--font-serif);color:var(--color-text);margin:0">At its core, my philosophy is simple: music lessons should be fun, active, and profoundly engaging. I use music as a universal lens to explore global cultures, designing transdisciplinary lessons built on immersive and interactive classroom experiences.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding:var(--space-8) 56px">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px">
+    <x-import component="Card" from="./ds/components/cards/Card.jsx" hint-size="auto,auto">
+      <image-slot id="usp-theatre" shape="rect" style="width:100%;height:220px;margin-bottom:20px" src="https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,w_1200/noah-diggs-portfolio/usp-theatre" placeholder="Drop photo: multimedia theatre production"></image-slot>
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="accent" hint-size="auto,26px">Theatre</x-import>
+      <p style="font:var(--text-h3);color:var(--color-text);margin:14px 0 8px">Immersive Class Design: The Classroom as a Stage</p>
+      <p style="font:var(--text-body);color:var(--color-text-muted);margin:0">Drawing on my extensive background in programming multimedia theatre for young audiences — including those with diverse needs — I approach every lesson as a curated performance. I design classes integrating custom scripts, dynamic visual slides, and interactive activities that capture imaginations instantly and keep students highly engaged from the first bell to the last.</p>
+    </x-import>
+    <x-import component="Card" from="./ds/components/cards/Card.jsx" hint-size="auto,auto">
+      <image-slot id="usp-conducting" shape="rect" style="width:100%;height:220px;margin-bottom:20px" src="https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,w_1200/noah-diggs-portfolio/usp-conducting" placeholder="Drop photo: conducting / arranging"></image-slot>
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="primary" hint-size="auto,26px">Conducting</x-import>
+      <p style="font:var(--text-h3);color:var(--color-text);margin:14px 0 8px">Bespoke Arrangements &amp; Ensemble Leadership</p>
+      <p style="font:var(--text-body);color:var(--color-text-muted);margin:0">My background in music composition allows me to directly serve the unique makeup of my ensembles. Whether leading a curricular class or an after-school CCA, I don't just buy sheet music; I arrange and adjust repertoire to match the exact instrumentation and skill levels of my students, ensuring every child feels successful and challenged.</p>
+    </x-import>
+  </div>
+</section>
+
+<section style="padding:var(--space-8) 56px;background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto">
+    <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 28px">Core Qualifications &amp; Pedagogies</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+      <sc-for list="{{ qualifications }}" as="q" hint-placeholder-count="4">
+        <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ q.cardStyle }}" hint-size="auto,auto">
+          <image-slot id="{{ q.slotId }}" shape="rect" style="width:100%;height:100px;margin-bottom:14px" src="{{ q.photoUrl }}" placeholder="{{ q.photoHint }}"></image-slot>
+          <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="{{ q.tone }}" hint-size="auto,24px">{{ q.tag }}</x-import>
+          <p style="font:600 16px/1.3 var(--font-serif);color:var(--color-text);margin:12px 0 6px">{{ q.title }}</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">{{ q.desc }}</p>
+        </x-import>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="padding:var(--space-8) 56px">
+  <div style="max-width:1120px;margin:0 auto">
+    <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 20px">Video Gallery</p>
+    <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap">
+      <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="3">
+        <span onClick="{{ tab.onClick }}" style="{{ tab.style }}">{{ tab.label }}</span>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <sc-for list="{{ currentClips }}" as="clip" hint-placeholder-count="3">
+        <x-import component="MediaCard" from="./ds/components/cards/MediaCard.jsx" title="{{ clip.title }}" meta="{{ clip.meta }}" kind="video" hint-size="100%,260px"></x-import>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="padding:var(--space-8) 56px;background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px">
+      <p style="font:var(--text-h2);color:var(--color-text);margin:0">What people say</p>
+      <div style="display:flex;gap:10px">
+        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="sm" onClick="{{ scrollPrev }}" hint-size="auto,40px">‹</x-import>
+        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="sm" onClick="{{ scrollNext }}" hint-size="auto,40px">›</x-import>
+      </div>
+    </div>
+    <div ref="{{ testimonialTrackRef }}" style="display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:0;scrollbar-width:none">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="4">
+        <div style="flex:0 0 100%;scroll-snap-align:start;display:flex;align-items:center;gap:40px;padding-right:4px">
+          <image-slot id="{{ t.slotId }}" shape="circle" style="width:160px;height:160px;flex:none" placeholder="Drop photo (optional)"></image-slot>
+          <div style="background:var(--cream-50);border:2px solid var(--ink-900);border-radius:var(--radius-lg);box-shadow:var(--shadow-pop-accent);padding:var(--space-6);flex:1;box-sizing:border-box">
+            <p style="font:italic 400 24px/1.5 var(--font-serif);color:var(--color-text);margin:0 0 20px">“{{ t.quote }}”</p>
+            <p style="font:700 15px/1.3 var(--font-sans);color:var(--color-primary);margin:0">{{ t.name }}</p>
+            <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">{{ t.role }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="padding:var(--space-8) 56px;background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto">
+    <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 28px">Frequently Asked Questions</p>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+        <div style="border-bottom:2px solid var(--ink-200)">
+          <div onClick="{{ f.toggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 4px;cursor:pointer">
+            <p style="font:600 18px/1.3 var(--font-serif);color:var(--color-text);margin:0">{{ f.question }}</p>
+            <span style="font:var(--text-h3);color:var(--color-primary);flex:none">{{ f.icon }}</span>
+          </div>
+          <sc-if value="{{ f.open }}">
+            <p style="font:var(--text-body);color:var(--color-text-muted);margin:0 0 20px;max-width:820px">{{ f.answer }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="padding:var(--space-9) 56px">
+  <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ ctaCardStyle }}" hint-size="auto,auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <p style="font:var(--text-h3);color:var(--color-text);margin:0;max-width:560px">Looking to elevate your music department?<br>Let's bring student creativity to center stage!</p>
+      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Download CV</x-import>
+    </div>
+  </x-import>
+</section>
+
+<footer style="border-top:2px solid var(--ink-900);padding:var(--space-6) 56px;background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">LinkedIn · noahtheartsworker@gmail.com</p>
+    <img src="brand/ngjd-logo.svg" style="height:56px;width:auto;flex:none" alt="Noah Gabriel Juliana Diggs monogram">
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">About · Gallery · Testimonials · MUN · Contact</p>
+  </div>
+</footer>
+
+</main>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeTab: 'classroom', openFaq: 0 };
+
+  toggleFaq(i) { this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })); }
+
+  GALLERY = {
+    classroom: [
+      { title: 'Percussion improv', meta: "Grade 3 Orff ensemble improvising a percussion piece" },
+      { title: 'Student rounds', meta: "Grade 5 recorder class performing a student-composed round" },
+      { title: 'Rhythm circle', meta: "Kindergarten movement & rhythm circle" }
+    ],
+    ensemble: [
+      { title: 'Folk song arrangement', meta: "Grade 8 orchestra performing an original arrangement of a Chinese folk song" },
+      { title: 'Concert closer', meta: "Middle school choir & strings joint concert closer" },
+      { title: 'Jazz combo', meta: "Student-arranged standard" }
+    ],
+    compositions: [
+      { title: "The Lantern Keeper", meta: "Original multimedia theatre piece, grades 6-8" },
+      { title: 'Spring showcase score', meta: "Original score for the spring dance showcase" },
+      { title: 'Devised piece', meta: "Student-devised theatre & music collaboration" }
+    ]
+  };
+
+  QUALIFICATIONS = [
+    { slotId: 'q-orff', photoHint: 'Photo: Orff percussion class', photoUrl: 'https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,w_800/noah-diggs-portfolio/q-orff', tag: 'Orff', tone: 'primary', title: 'Orff Schulwerk: Intuitive Creation', desc: "Fostering immediate, instinctive musical responses through accessible percussion, chant, and play — breaking complex concepts into simplified steps so young learners can create and perform from day one." },
+    { slotId: 'q-dalcroze', photoHint: 'Photo: Dalcroze movement session', photoUrl: 'https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,w_800/noah-diggs-portfolio/q-dalcroze', tag: 'Dalcroze', tone: 'accent', title: 'Dalcroze Eurhythmics: Embodied Rhythm', desc: "Channeling childhood energy into focused musicality — movement-based learning, particularly at the start of lessons, that helps early elementary students release energy while physically internalizing rhythm, tempo, and dynamics." },
+    { slotId: 'q-kodaly', photoHint: 'Photo: Kodály solfège lesson', photoUrl: 'https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,w_800/noah-diggs-portfolio/q-kodaly', tag: 'Kodály', tone: 'highlight', title: 'Kodály Concept: Sequential Literacy', desc: "Building strong melodic literacy through careful scaffolding — solfège, hand signs, and sequential repertoire that develop students' inner ear and grow their sight-singing confidence and musical independence." },
+    { slotId: 'q-ib', photoHint: 'Photo: IB classroom in session', tag: 'International Baccalaureate', tone: 'neutral', title: 'IB Curriculum: Global Contexts', desc: "Connecting music to the broader human experience — inquiry-based units that contextualize music within transdisciplinary themes, letting students explore diverse cultures, history, and language through a musical lens." }
+  ];
+
+  FAQS = [
+    { question: 'Why did you become a music educator?', answer: 'Music is a universal language, but fluency requires a guide. I teach to give students the vocabulary to express themselves, the confidence to take creative risks, and a medium to connect with cultures outside their own.' },
+    { question: 'What is your approach to student safety?', answer: 'Creating a physically and emotionally safe environment is my absolute first priority before any learning takes place. I maintain up-to-date training in child safeguarding and protection, ensuring my classroom is a secure, inclusive space for all learners.' },
+    { question: 'Why international education?', answer: "I believe the richest learning happens at the intersection of different cultures. International schools offer the incredible opportunity to teach global citizenship through the arts, allowing me to learn as much from my students' diverse backgrounds as they learn from me." },
+    { question: 'How do you define an "international mindset"?', answer: 'It is the active understanding that our own perspective is not the only perspective. In the music room, it means exploring diverse musical traditions with respect, celebrating our differences, and recognizing our shared humanity through art.' },
+    { question: 'How does data collection assist your lesson planning?', answer: "I rely on continuous formative assessment. By actively observing student performance — whether it's rhythmic accuracy during an Orff activity or vocal pitch in choir — I gather real-time data to differentiate my instruction on the spot and shape future unit plans to target specific skill gaps." },
+    { question: 'How would you describe your teaching style in 3 words?', answer: 'Immersive, Joyful, and Structured.' }
+  ];
+
+  TABS = [
+    { id: 'classroom', label: 'Classroom Teaching' },
+    { id: 'ensemble', label: 'Ensemble Conducting' },
+    { id: 'compositions', label: 'Original Compositions' }
+  ];
+
+  TESTIMONIALS = [
+    { quote: "Students lit up in every rehearsal — Noah has a rare gift for making advanced musicianship feel like play.", name: 'A. Whitfield', role: 'Parent, International School' },
+    { quote: "Noah rebuilt our entire ensemble program in a year, and gave our arts department a real artistic identity.", name: 'Priya Shah', role: 'Head of Music, ASL' },
+    { quote: "The multimedia theatre piece he directed with our MYP students was the best cross-curricular work we've produced.", name: 'Marcus Ondo', role: 'Head of Arts' },
+    { quote: "He made me feel like a real composer, not just a kid in band class.", name: 'Lian Tran', role: 'Grade 9 student' }
+  ];
+
+  testimonialTrackRef = React.createRef();
+
+  setTab(id) { this.setState({ activeTab: id }); }
+
+  scroll(dir) {
+    const el = this.testimonialTrackRef.current;
+    if (el) el.scrollBy({ left: dir * el.clientWidth, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    return {
+      navLinks: ['Home', 'About', 'Gallery', 'Testimonials', 'MUN', 'Contact'],
+      noop: () => {},
+      testimonialTrackRef: this.testimonialTrackRef,
+      testimonials: this.TESTIMONIALS.map((t, i) => ({ ...t, slotId: 'testimonial-photo-' + i })),
+      scrollPrev: () => this.scroll(-1),
+      scrollNext: () => this.scroll(1),
+      qualifications: this.QUALIFICATIONS.map(q => ({ ...q, cardStyle: { padding: '20px' } })),
+      faqs: this.FAQS.map((f, i) => ({
+        ...f,
+        open: this.state.openFaq === i,
+        icon: this.state.openFaq === i ? '–' : '+',
+        toggle: () => this.toggleFaq(i)
+      })),
+      tabs: this.TABS.map(t => {
+        const active = this.state.activeTab === t.id;
+        return {
+          label: t.label,
+          onClick: () => this.setTab(t.id),
+          style: {
+            font: 'var(--text-label)', letterSpacing: '0.06em', textTransform: 'uppercase',
+            padding: '8px 14px', borderRadius: 'var(--radius-full)', cursor: 'pointer',
+            background: active ? 'var(--orange-100)' : 'var(--ink-100)',
+            color: active ? 'var(--orange-800)' : 'var(--ink-700)',
+            border: active ? '1px solid var(--orange-300)' : '1px solid var(--ink-300)'
+          }
+        };
+      }),
+      currentClips: this.GALLERY[this.state.activeTab],
+      ctaCardStyle: { maxWidth: '1120px', margin: '0 auto' },
+      philosophyCardStyle: { background: 'var(--cream-50)', boxShadow: 'var(--shadow-pop-accent)' }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

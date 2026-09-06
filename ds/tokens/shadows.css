@@ -1,0 +1,9 @@
+:root {
+  --shadow-soft: 0 2px 8px rgba(36,28,21,0.08), 0 1px 2px rgba(36,28,21,0.06);
+  --shadow-md: 0 8px 24px rgba(36,28,21,0.12);
+  --shadow-lg: 0 20px 48px rgba(36,28,21,0.16);
+  /* signature "pop" motif — hard offset shadow, no blur, no gradients */
+  --shadow-pop: 4px 4px 0 var(--ink-900);
+  --shadow-pop-accent: 4px 4px 0 var(--color-primary);
+  --shadow-pop-sm: 3px 3px 0 var(--ink-900);
+}

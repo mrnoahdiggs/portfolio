@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="stylesheet" href="ds/styles.css">
+<script src="./image-slot.js"></script>
+<style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}</style>
+</helmet>
+
+<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Gallery" logoSrc="brand/ngjd-logo.svg" onSelect="{{ noop }}" hint-size="100%,88px"></x-import>
+
+<main>
+
+<div style="padding:56px 56px 24px;background:var(--white);text-align:center">
+  <p style="font:var(--text-h1);color:var(--color-text);margin:0 0 12px">Video Gallery</p>
+  <p style="font:var(--text-body-lg);color:var(--color-text-muted);max-width:640px;margin:0 auto">Selected classroom, ensemble, and original-work footage.</p>
+</div>
+
+<section style="padding:var(--space-6) 56px var(--space-8);background:var(--white)">
+  <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center">
+    <p style="font:var(--text-label);letter-spacing:.06em;text-transform:uppercase;color:var(--color-primary);margin:0 0 12px;align-self:flex-start">Featured</p>
+    <x-import component="MediaCard" from="./ds/components/cards/MediaCard.jsx" title="The Lantern Keeper" meta="Original multimedia theatre piece, grades 6–8 — music, drama, and visual art in one production" kind="video" card-style="{{ featuredStyle }}" aspect-ratio="16 / 9" hint-size="100%,560px"></x-import>
+  </div>
+</section>
+
+<section style="padding:var(--space-8) 56px">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap">
+      <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="3">
+        <span onClick="{{ tab.onClick }}" style="{{ tab.style }}">{{ tab.label }}</span>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <sc-for list="{{ currentClips }}" as="clip" hint-placeholder-count="3">
+        <x-import component="MediaCard" from="./ds/components/cards/MediaCard.jsx" title="{{ clip.title }}" meta="{{ clip.meta }}" kind="video" hint-size="100%,260px"></x-import>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="padding:var(--space-9) 56px">
+  <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ ctaCardStyle }}" hint-size="auto,auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <p style="font:var(--text-h3);color:var(--color-text);margin:0;max-width:560px">Looking to elevate your music department?<br>Let's bring student creativity to center stage!</p>
+      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Download CV</x-import>
+    </div>
+  </x-import>
+</section>
+
+<footer style="border-top:2px solid var(--ink-900);padding:var(--space-6) 56px;background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">LinkedIn · noahtheartsworker@gmail.com</p>
+    <img src="brand/ngjd-logo.svg" style="height:56px;width:auto;flex:none" alt="Noah Gabriel Juliana Diggs monogram">
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">About · Gallery · Testimonials · MUN · Contact</p>
+  </div>
+</footer>
+
+</main>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeTab: 'classroom' };
+
+  GALLERY = {
+    classroom: [
+      { title: 'Percussion improv', meta: "Grade 3 Orff ensemble improvising a percussion piece" },
+      { title: 'Student rounds', meta: "Grade 5 recorder class performing a student-composed round" },
+      { title: 'Rhythm circle', meta: "Kindergarten movement & rhythm circle" }
+    ],
+    ensemble: [
+      { title: 'Folk song arrangement', meta: "Grade 8 orchestra performing an original arrangement of a Chinese folk song" },
+      { title: 'Concert closer', meta: "Middle school choir & strings joint concert closer" },
+      { title: 'Jazz combo', meta: "Student-arranged standard" }
+    ],
+    compositions: [
+      { title: "The Lantern Keeper", meta: "Original multimedia theatre piece, grades 6-8" },
+      { title: 'Spring showcase score', meta: "Original score for the spring dance showcase" },
+      { title: 'Devised piece', meta: "Student-devised theatre & music collaboration" }
+    ]
+  };
+
+  TABS = [
+    { id: 'classroom', label: 'Classroom Teaching' },
+    { id: 'ensemble', label: 'Ensemble Conducting' },
+    { id: 'compositions', label: 'Original Compositions' }
+  ];
+
+  setTab(id) { this.setState({ activeTab: id }); }
+
+  renderVals() {
+    return {
+      navLinks: ['Home', 'About', 'Gallery', 'Testimonials', 'MUN', 'Contact'],
+      noop: () => {},
+      featuredStyle: { width: '100%' },
+      tabs: this.TABS.map(t => {
+        const active = this.state.activeTab === t.id;
+        return {
+          label: t.label,
+          onClick: () => this.setTab(t.id),
+          style: {
+            font: 'var(--text-label)', letterSpacing: '0.06em', textTransform: 'uppercase',
+            padding: '8px 14px', borderRadius: 'var(--radius-full)', cursor: 'pointer',
+            background: active ? 'var(--orange-100)' : 'var(--ink-100)',
+            color: active ? 'var(--orange-800)' : 'var(--ink-700)',
+            border: active ? '1px solid var(--orange-300)' : '1px solid var(--ink-300)'
+          }
+        };
+      }),
+      currentClips: this.GALLERY[this.state.activeTab],
+      ctaCardStyle: { maxWidth: '1120px', margin: '0 auto' }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

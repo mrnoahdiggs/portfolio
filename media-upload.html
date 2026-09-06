@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Media Upload — Cloudinary</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  body { font-family: -apple-system, Segoe UI, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; }
+  h1 { font-size: 1.4rem; }
+  p.hint { color: #555; font-size: 0.95rem; }
+  button { font-size: 1rem; padding: 12px 20px; border-radius: 8px; border: none; background: #1a73e8; color: white; cursor: pointer; }
+  button:hover { background: #1558b0; }
+  .result { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-top: 16px; }
+  .result img, .result video { max-width: 100%; border-radius: 6px; display: block; margin-bottom: 10px; }
+  textarea { width: 100%; box-sizing: border-box; font-family: monospace; font-size: 0.85rem; padding: 8px; border-radius: 6px; border: 1px solid #ccc; }
+  .copy-btn { background: #eee; color: #1a1a1a; font-size: 0.85rem; padding: 6px 12px; margin-top: 6px; }
+  .copy-btn:hover { background: #ddd; }
+</style>
+</head>
+<body>
+<h1>Upload photos/videos to Cloudinary</h1>
+<p class="hint">
+  Internal tool — not linked from the site's navigation. Upload here, then
+  copy the generated HTML snippet into any page (index.html, about.html,
+  etc.) wherever you want that photo or video to appear.
+</p>
+<button id="upload-btn">Upload media</button>
+<div id="results"></div>
+
+<script src="./cloudinary.js"></script>
+<script>
+  document.getElementById('upload-btn').addEventListener('click', function () {
+    cld.openUploadWidget(
+      function (info) {
+        addResult(info);
+      },
+      function (err) {
+        alert('Upload failed: ' + (err && err.message ? err.message : err));
+      }
+    );
+  });
+
+  function addResult(info) {
+    var container = document.getElementById('results');
+    var box = document.createElement('div');
+    box.className = 'result';
+
+    var isVideo = info.resourceType === 'video';
+    var preview = document.createElement(isVideo ? 'video' : 'img');
+    if (isVideo) {
+      preview.src = info.url;
+      preview.controls = true;
+    } else {
+      preview.src = info.url;
+      preview.alt = info.publicId;
+    }
+    box.appendChild(preview);
+
+    var snippet = isVideo
+      ? '<video src="' + cld.videoUrl(info.publicId, { width: 1280 }) +
+        '" poster="' + cld.videoPosterUrl(info.publicId, { width: 1280 }) +
+        '" controls playsinline style="width:100%;border-radius:8px"></video>'
+      : '<img src="' + cld.imageUrl(info.publicId, { width: 1200 }) +
+        '" alt="" style="width:100%;border-radius:8px" />';
+
+    var label = document.createElement('div');
+    label.style.fontSize = '0.85rem';
+    label.style.marginBottom = '6px';
+    label.textContent = info.publicId + ' (' + info.resourceType + ')';
+    box.appendChild(label);
+
+    var ta = document.createElement('textarea');
+    ta.rows = isVideo ? 3 : 2;
+    ta.value = snippet;
+    ta.readOnly = true;
+    box.appendChild(ta);
+
+    var copyBtn = document.createElement('button');
+    copyBtn.className = 'copy-btn';
+    copyBtn.textContent = 'Copy snippet';
+    copyBtn.addEventListener('click', function () {
+      ta.select();
+      navigator.clipboard.writeText(ta.value).then(function () {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(function () { copyBtn.textContent = 'Copy snippet'; }, 1500);
+      });
+    });
+    box.appendChild(copyBtn);
+
+    container.prepend(box);
+  }
+</script>
+</body>
+</html>
