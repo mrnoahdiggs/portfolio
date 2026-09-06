@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./nav.js"></script>
 </head>
 <body>
 <x-dc>
@@ -13,7 +14,7 @@
 <style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}</style>
 </helmet>
 
-<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Home" logoSrc="brand/ngjd-logo.svg" onSelect="{{ noop }}" hint-size="100%,88px"></x-import>
+<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Home" logoSrc="brand/ngjd-logo.svg" onSelect="{{ window.dcNav.navigateTo }}" hint-size="100%,88px"></x-import>
 
 <main>
 
@@ -28,7 +29,7 @@
     </div>
     <div style="display:flex;gap:12px;flex:none">
       <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Watch Teaching Reel</x-import>
-      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="lg" hint-size="auto,54px">Contact</x-import>
+      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="lg" onClick="{{ goContact }}" hint-size="auto,54px">Contact</x-import>
     </div>
   </div>
 </section>
@@ -95,7 +96,7 @@
   </div>
 </section>
 
-<section style="padding:var(--space-8) 56px;background:var(--white)">
+<section id="testimonials" style="padding:var(--space-8) 56px;background:var(--white)">
   <div style="max-width:1120px;margin:0 auto">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px">
       <p style="font:var(--text-h2);color:var(--color-text);margin:0">What people say</p>
@@ -142,7 +143,7 @@
   <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ ctaCardStyle }}" hint-size="auto,auto">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
       <p style="font:var(--text-h3);color:var(--color-text);margin:0;max-width:560px">Looking to elevate your music department?<br>Let's bring student creativity to center stage!</p>
-      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Download CV</x-import>
+      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" onClick="{{ goContact }}" hint-size="auto,54px">Download CV</x-import>
     </div>
   </x-import>
 </section>
@@ -223,7 +224,8 @@ class Component extends DCLogic {
   renderVals() {
     return {
       navLinks: ['Home', 'About', 'Gallery', 'Testimonials', 'MUN', 'Contact'],
-      noop: () => {},
+      window: window,
+      goContact: () => window.dcNav.navigateTo('Contact'),
       testimonialTrackRef: this.testimonialTrackRef,
       testimonials: this.TESTIMONIALS.map((t, i) => ({ ...t, slotId: 'testimonial-photo-' + i })),
       scrollPrev: () => this.scroll(-1),

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./nav.js"></script>
 </head>
 <body>
 <x-dc>
@@ -12,7 +13,7 @@
 <style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}</style>
 </helmet>
 
-<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Contact" logoSrc="brand/ngjd-logo.svg" onSelect="{{ noop }}" hint-size="100%,88px"></x-import>
+<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Contact" logoSrc="brand/ngjd-logo.svg" onSelect="{{ window.dcNav.navigateTo }}" hint-size="100%,88px"></x-import>
 
 <main>
 
@@ -33,9 +34,9 @@
       <p style="font:var(--text-h3);color:var(--color-text);margin:0 0 12px">Confidential References &amp; Documentation</p>
       <p style="font:var(--text-body);color:var(--color-text-muted);margin:0 0 16px">For access to my confidential letters of recommendation, background checks, and official documentation, please view my active candidate profiles:</p>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="md" href="https://searchassociates.com" hint-size="auto,48px">Search Associates Profile →</x-import>
-        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="md" href="https://schrole.com" hint-size="auto,48px">ISS / Schrole Profile →</x-import>
-        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="md" href="https://linkedin.com" hint-size="auto,48px">LinkedIn Profile →</x-import>
+        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="md" onClick="{{ openSearchAssociates }}" hint-size="auto,48px">Search Associates Profile →</x-import>
+        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="md" onClick="{{ openSchrole }}" hint-size="auto,48px">ISS / Schrole Profile →</x-import>
+        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="md" onClick="{{ openLinkedIn }}" hint-size="auto,48px">LinkedIn Profile →</x-import>
       </div>
     </div>
 
@@ -62,7 +63,10 @@ class Component extends DCLogic {
   renderVals() {
     return {
       navLinks: ['Home', 'About', 'Gallery', 'Testimonials', 'MUN', 'Contact'],
-      noop: () => {},
+      window: window,
+      openSearchAssociates: () => window.dcNav.openExternal('https://searchassociates.com'),
+      openSchrole: () => window.dcNav.openExternal('https://schrole.com'),
+      openLinkedIn: () => window.dcNav.openExternal('https://linkedin.com'),
       statusCardStyle: { padding: '24px', background: 'var(--cream-50)' }
     };
   }
