@@ -10,6 +10,28 @@ no build step required.
 - `support.js`, `image-slot.js` — page runtime (loads React/Babel from a CDN at
   runtime and renders the page's components; also restores photos from
   `.image-slots.state.json`)
+- `cloudinary.js`, `media-upload.html` — Cloudinary integration for hosting new photos/videos
+
+## Adding photos and videos (Cloudinary)
+
+New media is hosted on Cloudinary (cloud name `xmobf5bj`) instead of being
+embedded as base64 in the page. Uploads use an **unsigned upload preset**
+(`claude`), so no API key/secret is needed anywhere in this repo.
+
+1. Open `media-upload.html` in a browser (locally, or on the deployed site —
+   it's not linked from the nav, so visitors won't find it, but it also
+   isn't secured, so avoid sharing the URL publicly).
+2. Click **Upload media** and pick a photo or video. It uploads directly to
+   your Cloudinary account.
+3. Copy the generated `<img>`/`<video>` snippet and paste it into whichever
+   page you want it on (`index.html`, `about.html`, etc.), replacing an
+   `<image-slot>` element or any placeholder content.
+
+`cloudinary.js` also exposes helpers if you want to build Cloudinary URLs by
+hand for an existing upload:
+- `cld.imageUrl(publicId, { width })` — optimized image URL (auto format/quality)
+- `cld.videoUrl(publicId, { width })` — optimized video URL
+- `cld.videoPosterUrl(publicId, { width })` — a JPG poster frame for a video
 
 ## Deploying to Cloudflare Pages
 
