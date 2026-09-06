@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="stylesheet" href="ds/styles.css">
+<script src="./image-slot.js"></script>
+<style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}</style>
+</helmet>
+
+<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="About" logoSrc="brand/ngjd-logo.svg" onSelect="{{ noop }}" hint-size="100%,88px"></x-import>
+
+<main>
+
+<div style="padding:56px 56px 40px;background:var(--white);text-align:center">
+  <p style="font:var(--text-h1);color:var(--color-text);margin:0 0 16px">About Noah Diggs</p>
+  <p style="font:italic 400 20px/1.6 var(--font-serif);color:var(--color-primary);max-width:620px;margin:0 auto">“As an artist, educator, musician, and human, I strive to build beautiful worlds in order to teach us how to make our own a better place.”</p>
+</div>
+
+<div style="padding:0 56px 48px;background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto;display:flex;gap:36px;align-items:center">
+    <image-slot id="about-portrait" shape="rounded" radius="16" style="width:220px;height:260px;flex:none" placeholder="Drop portrait photo"></image-slot>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <p style="font:var(--text-body);color:var(--color-text);margin:0">As a mixed Filipino-American raised in the United States, I have always possessed a deep desire to broaden my perspective and learn from other cultures. From starting cello lessons at age 8 to beginning dance and movement classes at age 22, I am at my best when I am learning something new. This global mindset eventually led me across the planet to Singapore, where my focus shifted toward international pedagogy, music philanthropy, and arts production management.</p>
+      <p style="font:var(--text-body);color:var(--color-text-muted);margin:0">Today, I strive to achieve a delicate balance in my classroom: building concrete instrumental skills, instilling an overall knowledge of musical concepts and history, and fostering the full enjoyment of music as an art form capable of inspiring awe and beauty.</p>
+    </div>
+  </div>
+</div>
+
+<div style="padding:var(--space-8) 56px;background:var(--cream-50)">
+  <div style="max-width:1120px;margin:0 auto">
+    <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 8px">Core Capabilities &amp; Leadership</p>
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 24px">A holistic, multi-sensory approach to international education</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ capStyle }}" hint-size="auto,auto">
+        <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="primary" hint-size="auto,24px">Curriculum</x-import>
+        <p style="font:600 15px/1.3 var(--font-serif);color:var(--color-text);margin:10px 0 4px">Curriculum Design &amp; IB Alignment</p>
+        <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">Fluent across PYP, IGCSE, and Washington State standards — recently rewrote the Grade 1–3 music curriculum with the PYP Coordinator to strengthen IB alignment and embed translanguaging.</p>
+      </x-import>
+      <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ capStyle }}" hint-size="auto,auto">
+        <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="accent" hint-size="auto,24px">Pedagogy</x-import>
+        <p style="font:600 15px/1.3 var(--font-serif);color:var(--color-text);margin:10px 0 4px">Inclusive Pedagogy</p>
+        <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">Draws heavily on Orff, Kodály, Dalcroze, and Suzuki methodologies, grounded in Universal Design for Learning (Novak Educational Consulting UDL Fellows, 2024).</p>
+      </x-import>
+      <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ capStyle }}" hint-size="auto,auto">
+        <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="highlight" hint-size="auto,24px">Theatre</x-import>
+        <p style="font:600 15px/1.3 var(--font-serif);color:var(--color-text);margin:10px 0 4px">Theatrical Production</p>
+        <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">Director, producer, and performer of theatre for young audiences — interactive elements and movement for wonder alongside tangible education.</p>
+      </x-import>
+      <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ capStyle }}" hint-size="auto,auto">
+        <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="neutral" hint-size="auto,24px">Leadership</x-import>
+        <p style="font:600 15px/1.3 var(--font-serif);color:var(--color-text);margin:10px 0 4px">School Leadership</p>
+        <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">Schoolwide MUN Coordinator, Grade 5 PYP Exhibition mentor, and co-director of elementary musicals.</p>
+      </x-import>
+    </div>
+    <div style="margin-top:16px">
+      <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ capStyle }}" hint-size="auto,auto">
+        <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="primary" hint-size="auto,24px">Partnership</x-import>
+        <p style="font:600 15px/1.3 var(--font-serif);color:var(--color-text);margin:10px 0 4px">Parent Partnership</p>
+        <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">Communication with parents is central to my practice — tailoring curriculums together, since they are the keystones to a child's at-home musical progress.</p>
+      </x-import>
+    </div>
+  </div>
+</div>
+
+<div style="padding:var(--space-8) 56px;background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto">
+    <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 32px">My Musical &amp; Educational Timeline</p>
+    <div style="position:relative">
+      <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--ink-300)"></div>
+
+      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-bottom:36px">
+        <div style="text-align:right;padding-right:24px">
+          <p style="font:700 12px var(--font-mono);color:var(--color-primary);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">The Early Years</p>
+          <p style="font:600 17px/1.3 var(--font-serif);color:var(--color-text);margin:0 0 8px">Cultivating the Artist</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>Age 8</b> — began cello lessons, sparking a nineteen-year (and counting) dedication to the instrument.</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><b>Age 22</b> — expanded creative expression through dance and movement classes.</p>
+        </div>
+        <div style="display:flex;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:var(--color-primary);border:2px solid var(--ink-900);margin-top:4px"></div></div>
+        <div><image-slot id="about-era1" shape="rounded" radius="12" style="width:100%;height:140px" placeholder="Drop photo: young Noah with cello"></image-slot></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-bottom:36px">
+        <div><image-slot id="about-era2" shape="rounded" radius="12" style="width:100%;height:140px" placeholder="Drop photo: NUS campus / Singapore"></image-slot></div>
+        <div style="display:flex;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:var(--color-accent);border:2px solid var(--ink-900);margin-top:4px"></div></div>
+        <div style="padding-left:24px">
+          <p style="font:700 12px var(--font-mono);color:var(--color-accent);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">University Days</p>
+          <p style="font:600 17px/1.3 var(--font-serif);color:var(--color-text);margin:0 0 8px">Expanding Horizons</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>The Big Move</b> — emigrated to Singapore for university, immersing in a new culture and history.</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>Academic Excellence</b> — Bachelor of Music in Composition, National University of Singapore, full scholarship.</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><b>Community Outreach</b> — taught at local primary schools, led residencies abroad, curated concerts for children with disabilities.</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-bottom:36px">
+        <div style="text-align:right;padding-right:24px">
+          <p style="font:700 12px var(--font-mono);color:var(--gold-600);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">Early Career (5 Years)</p>
+          <p style="font:600 17px/1.3 var(--font-serif);color:var(--color-text);margin:0 0 8px">Building the Foundation</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>Kids' Philharmonic Orchestra</b> — teaching cello, theory, and composition to children ages 2–14.</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>Production Management</b> — organized community concerts and recitals.</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><b>Early Childhood Focus</b> — kinetic curriculums for Nursery/Pre-K, building fine motor skills through drumming and dance.</p>
+        </div>
+        <div style="display:flex;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:var(--gold-500);border:2px solid var(--ink-900);margin-top:4px"></div></div>
+        <div><image-slot id="about-era3" shape="rounded" radius="12" style="width:100%;height:140px" placeholder="Drop photo: teaching young children"></image-slot></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0">
+        <div><image-slot id="about-era4" shape="rounded" radius="12" style="width:100%;height:140px" placeholder="Drop photo: Stamford American / performance"></image-slot></div>
+        <div style="display:flex;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:var(--color-primary);border:2px solid var(--ink-900);margin-top:4px"></div></div>
+        <div style="padding-left:24px">
+          <p style="font:700 12px var(--font-mono);color:var(--color-primary);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">2023 – Present</p>
+          <p style="font:600 17px/1.3 var(--font-serif);color:var(--color-text);margin:0 0 8px">International Educator</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>Stamford American International School</b> — elementary music specialist in Singapore; Grades 1–3 classroom music, Grade 1–5 choir, Grades 1–12 orchestras.</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>Professional Growth</b> — US K–12 certification (Moreland University), IB PYP Category 2, AMIS conference, Dalcroze and Orff workshops.</p>
+          <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><b>Professional Artist</b> — co-created and performed original work for Esplanade's March On and Octoburst festivals.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section style="padding:var(--space-9) 56px">
+  <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ ctaCardStyle }}" hint-size="auto,auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <p style="font:var(--text-h3);color:var(--color-text);margin:0;max-width:560px">Looking to elevate your music department? Let's bring student creativity to center stage.</p>
+      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Download CV</x-import>
+    </div>
+  </x-import>
+</section>
+
+<footer style="border-top:2px solid var(--ink-900);padding:var(--space-6) 56px;background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">LinkedIn · noahtheartsworker@gmail.com</p>
+    <img src="brand/ngjd-logo.svg" style="height:56px;width:auto;flex:none" alt="Noah Gabriel Juliana Diggs monogram">
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0">About · Gallery · Testimonials · MUN · Contact</p>
+  </div>
+</footer>
+
+</main>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      navLinks: ['Home', 'About', 'Gallery', 'Testimonials', 'MUN', 'Contact'],
+      noop: () => {},
+      capStyle: { padding: '20px' },
+      ctaCardStyle: { maxWidth: '1120px', margin: '0 auto' }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

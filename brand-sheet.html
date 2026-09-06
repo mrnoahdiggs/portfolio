@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="stylesheet" href="ds/styles.css">
+<style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}</style>
+</helmet>
+
+<main style="max-width:1120px;margin:0 auto;padding:64px 56px;display:flex;flex-direction:column;gap:64px">
+
+<div>
+  <img src="brand/ngjd-logo.svg" style="height:64px;width:auto;margin-bottom:20px">
+  <p style="font:var(--text-display);color:var(--color-text);margin:0">Noah Diggs</p>
+  <p style="font:var(--text-h4, 600 20px/1.3 var(--font-serif));font:600 20px/1.3 var(--font-serif);color:var(--color-primary);margin:8px 0 0">Brand Sheet &amp; Component Library</p>
+</div>
+
+<section>
+  <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 24px">Color</p>
+  <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 20px">Warm ink &amp; cream neutrals, orange primary, teal accent, gold highlight — no pure black/white.</p>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
+    <sc-for list="{{ swatches }}" as="s" hint-placeholder-count="10">
+      <div>
+        <div style="{{ s.style }}"></div>
+        <p style="font:600 13px var(--font-sans);color:var(--color-text);margin:8px 0 0">{{ s.name }}</p>
+        <p style="font:var(--text-label);color:var(--color-text-muted);margin:2px 0 0">{{ s.hex }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section>
+  <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 24px">Typography</p>
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <div><p style="font:var(--text-display);color:var(--color-text);margin:0">Display</p><p style="font:var(--text-label);color:var(--color-text-muted);margin:4px 0 0">Lora 600 · clamp(48–88px)</p></div>
+    <div><p style="font:var(--text-h1);color:var(--color-text);margin:0">Heading 1</p><p style="font:var(--text-label);color:var(--color-text-muted);margin:4px 0 0">Lora 600 · clamp(36–56px)</p></div>
+    <div><p style="font:var(--text-h2);color:var(--color-text);margin:0">Heading 2</p><p style="font:var(--text-label);color:var(--color-text-muted);margin:4px 0 0">Lora 600 · clamp(28–40px)</p></div>
+    <div><p style="font:var(--text-h3);color:var(--color-text);margin:0">Heading 3</p><p style="font:var(--text-label);color:var(--color-text-muted);margin:4px 0 0">Lora 600 · 26px</p></div>
+    <div><p style="font:var(--text-body-lg);color:var(--color-text);margin:0">Body Large — used for intros and lede paragraphs.</p><p style="font:var(--text-label);color:var(--color-text-muted);margin:4px 0 0">Work Sans 400 · 19px</p></div>
+    <div><p style="font:var(--text-body);color:var(--color-text);margin:0">Body — the default paragraph style across the site.</p><p style="font:var(--text-label);color:var(--color-text-muted);margin:4px 0 0">Work Sans 400 · 16px</p></div>
+    <div><p style="font:var(--text-small);color:var(--color-text-muted);margin:0">Small — captions, meta text, muted detail.</p><p style="font:var(--text-label);color:var(--color-text-muted);margin:4px 0 0">Work Sans 400 · 14px</p></div>
+    <div><p style="font:var(--text-label);color:var(--color-text);margin:0;text-transform:uppercase;letter-spacing:.06em">Label / Eyebrow</p><p style="font:var(--text-label);color:var(--color-text-muted);margin:4px 0 0">Space Mono 700 · 12px</p></div>
+  </div>
+</section>
+
+<section>
+  <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 24px">Signature Shadow — "Pop"</p>
+  <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 20px">Hard offset shadow, no blur, no gradients. Lifts further on hover.</p>
+  <div style="display:flex;gap:32px">
+    <div style="width:140px;height:100px;background:var(--white);border:2px solid var(--ink-900);border-radius:var(--radius-lg);box-shadow:var(--shadow-pop)"></div>
+    <div style="width:140px;height:100px;background:var(--white);border:2px solid var(--ink-900);border-radius:var(--radius-lg);box-shadow:var(--shadow-pop-accent)"></div>
+    <div style="width:140px;height:100px;background:var(--white);border:2px solid var(--ink-900);border-radius:var(--radius-md);box-shadow:var(--shadow-pop-sm)"></div>
+  </div>
+</section>
+
+<section>
+  <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 24px">Buttons</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+    <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Primary</x-import>
+    <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="secondary" size="lg" hint-size="auto,54px">Secondary</x-import>
+    <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="lg" hint-size="auto,54px">Outline</x-import>
+    <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="ghost" size="lg" hint-size="auto,54px">Ghost</x-import>
+    <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="md" hint-size="auto,44px">Medium</x-import>
+    <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="sm" hint-size="auto,36px">Small</x-import>
+    <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="md" disabled="{{ true }}" hint-size="auto,44px">Disabled</x-import>
+  </div>
+</section>
+
+<section>
+  <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 24px">Badges</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="primary" hint-size="auto,26px">Primary</x-import>
+    <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="accent" hint-size="auto,26px">Accent</x-import>
+    <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="highlight" hint-size="auto,26px">Highlight</x-import>
+    <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="neutral" hint-size="auto,26px">Neutral</x-import>
+  </div>
+</section>
+
+<section>
+  <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 24px">Cards</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <x-import component="Card" from="./ds/components/cards/Card.jsx" hint-size="auto,auto">
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="primary" hint-size="auto,24px">Tag</x-import>
+      <p style="font:600 18px/1.3 var(--font-serif);color:var(--color-text);margin:12px 0 6px">Card title</p>
+      <p style="font:var(--text-body);color:var(--color-text-muted);margin:0">Base surface with a 2px ink border and the signature pop shadow. Lifts on hover.</p>
+    </x-import>
+    <x-import component="MediaCard" from="./ds/components/cards/MediaCard.jsx" title="MediaCard" meta="Thumbnail + title + meta line, used for video gallery grids" kind="video" hint-size="100%,240px"></x-import>
+    <x-import component="TestimonialCard" from="./ds/components/cards/TestimonialCard.jsx" quote="Quote card for testimonials — italic serif quote, name, and role." name="Full Name" role="Title, Organization" hint-size="100%,200px"></x-import>
+  </div>
+</section>
+
+<section>
+  <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 24px">Navigation</p>
+  <x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Home" logoSrc="brand/ngjd-logo.svg" onSelect="{{ noop }}" hint-size="100%,88px"></x-import>
+</section>
+
+<section>
+  <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 24px">Spacing &amp; Radius</p>
+  <div style="display:flex;flex-wrap:wrap;gap:20px;margin-bottom:32px">
+    <sc-for list="{{ spacings }}" as="sp" hint-placeholder-count="6">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="{{ sp.style }}"></div>
+        <p style="font:var(--text-label);color:var(--color-text-muted);margin:0">{{ sp.label }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;gap:24px">
+    <div><div style="width:80px;height:80px;background:var(--ink-100);border-radius:var(--radius-sm)"></div><p style="font:var(--text-label);color:var(--color-text-muted);margin:6px 0 0">sm · 6px</p></div>
+    <div><div style="width:80px;height:80px;background:var(--ink-100);border-radius:var(--radius-md)"></div><p style="font:var(--text-label);color:var(--color-text-muted);margin:6px 0 0">md · 12px</p></div>
+    <div><div style="width:80px;height:80px;background:var(--ink-100);border-radius:var(--radius-lg)"></div><p style="font:var(--text-label);color:var(--color-text-muted);margin:6px 0 0">lg · 20px</p></div>
+    <div><div style="width:80px;height:80px;background:var(--ink-100);border-radius:var(--radius-full)"></div><p style="font:var(--text-label);color:var(--color-text-muted);margin:6px 0 0">full · 999px</p></div>
+  </div>
+</section>
+
+</main>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  SWATCHES = [
+    ['Orange 500 (primary)', '#FF7518'], ['Orange 600 (hover)', '#E85C00'], ['Orange 100', '#FFE1C7'],
+    ['Teal 600 (accent)', '#1D6F76'], ['Teal 100', '#CDEBEC'],
+    ['Gold 500 (highlight)', '#F2B705'], ['Gold 100', '#FCEDB8'],
+    ['Ink 900 (text)', '#241C15'], ['Ink 600 (muted)', '#6B5C4C'], ['Cream 50 (bg)', '#FBF6EF']
+  ];
+  SPACING = [4,8,12,16,24,32];
+
+  renderVals() {
+    return {
+      navLinks: ['Home', 'About', 'Gallery', 'Testimonials', 'MUN', 'Contact'],
+      noop: () => {},
+      swatches: this.SWATCHES.map(([name, hex]) => ({
+        name, hex,
+        style: `width:100%;height:72px;border-radius:var(--radius-md);border:2px solid var(--ink-900);background:${hex}`
+      })),
+      spacings: this.SPACING.map(px => ({
+        label: `${px}px`,
+        style: `width:${px}px;height:${px}px;background:var(--color-primary);border-radius:2px`
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>
