@@ -28,7 +28,12 @@
       <p style="font:var(--text-body-lg);color:var(--white);opacity:.9;margin:0">Connecting students to the world through music-making</p>
     </div>
     <div style="display:flex;gap:12px;flex:none">
-      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Watch Teaching Reel</x-import>
+      <div style="position:relative;display:inline-flex">
+        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" hint-size="auto,54px">Watch Teaching Reel</x-import>
+        <span style="position:absolute;top:-10px;right:-10px;z-index:1">
+          <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="neutral" hint-size="auto,24px">Coming Soon</x-import>
+        </span>
+      </div>
       <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="outline" size="lg" onClick="{{ goContact }}" hint-size="auto,54px">Contact</x-import>
     </div>
   </div>
