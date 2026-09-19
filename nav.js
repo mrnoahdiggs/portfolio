@@ -8,6 +8,7 @@
     Contact: './contact.html',
     // No dedicated MUN section exists yet; route to home until one is built.
     MUN: './index.html',
+    LinkedIn: 'https://www.linkedin.com/in/noahdiggs/',
   };
 
   function onIndexPage() {
@@ -17,6 +18,7 @@
   function navigateTo(label) {
     var dest = ROUTES[label];
     if (!dest) return;
+    if (/^https?:\/\//.test(dest)) { openExternal(dest); return; }
     var hashIdx = dest.indexOf('#');
     if (hashIdx !== -1) {
       var page = dest.slice(0, hashIdx);
