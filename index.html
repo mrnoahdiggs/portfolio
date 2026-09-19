@@ -11,7 +11,11 @@
 <helmet data-dc-atomics="">
 <link rel="stylesheet" href="ds/styles.css">
 <script src="./image-slot.js"></script>
-<style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}</style>
+<style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}
+@keyframes eq{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+.hero [style*="animation:eq"]{transform-origin:bottom}
+@media (prefers-reduced-motion:reduce){.hero [style*="animation:eq"]{animation:none!important}}
+</style>
 </helmet>
 
 <x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Home" logoSrc="brand/ngjd-logo.svg" onSelect="{{ window.dcNav.navigateTo }}" hint-size="100%,88px"></x-import>
@@ -19,7 +23,21 @@
 <main>
 
 <section class="hero" style="position:relative;overflow:hidden">
-  <image-slot id="hero-media" shape="rect" style="width:100%;height:560px" placeholder="Drop hero video/photo: Noah conducting a rehearsal"></image-slot>
+  <div style="width:100%;height:560px;background:var(--cream-50);display:flex;align-items:center;justify-content:center;position:relative">
+    <div style="position:absolute;top:0;left:0;right:0;height:22px;background:repeating-linear-gradient(90deg, var(--ink-900) 0 18px, transparent 18px 40px);opacity:.14"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:22px;background:repeating-linear-gradient(90deg, var(--ink-900) 0 18px, transparent 18px 40px);opacity:.14"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:20px;margin-bottom:120px;padding:36px 48px;background:var(--white);border:2px solid var(--ink-900);border-radius:var(--radius-lg);box-shadow:var(--shadow-pop-accent);text-align:center;max-width:560px">
+      <div style="display:flex;align-items:flex-end;gap:5px;height:34px">
+        <span style="width:6px;background:var(--color-primary);border-radius:3px;animation:eq 1.1s ease-in-out infinite;height:40%"></span>
+        <span style="width:6px;background:var(--color-accent);border-radius:3px;animation:eq 1.1s ease-in-out .15s infinite;height:75%"></span>
+        <span style="width:6px;background:var(--gold-500);border-radius:3px;animation:eq 1.1s ease-in-out .3s infinite;height:55%"></span>
+        <span style="width:6px;background:var(--color-primary);border-radius:3px;animation:eq 1.1s ease-in-out .45s infinite;height:90%"></span>
+        <span style="width:6px;background:var(--color-accent);border-radius:3px;animation:eq 1.1s ease-in-out .6s infinite;height:50%"></span>
+      </div>
+      <p style="font:var(--text-label);letter-spacing:.14em;text-transform:uppercase;color:var(--color-primary);margin:0">● Rec · Teaching Reel</p>
+      <p style="font:600 30px/1.2 var(--font-serif);color:var(--color-text);margin:0">Currently in rehearsal.</p>
+    </div>
+  </div>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(36,28,21,0) 30%, rgba(36,28,21,.78) 100%);pointer-events:none"></div>
   <div style="position:absolute;left:0;right:0;bottom:0;padding:48px 56px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap">
     <div style="display:flex;flex-direction:column;gap:14px;max-width:640px">
