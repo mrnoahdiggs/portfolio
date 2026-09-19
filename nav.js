@@ -6,7 +6,6 @@
     About: './about.html',
     Gallery: './gallery.html',
     Contact: './contact.html',
-    Testimonials: './index.html#testimonials',
     // No dedicated MUN section exists yet; route to home until one is built.
     MUN: './index.html',
   };
