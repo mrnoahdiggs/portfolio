@@ -22,13 +22,13 @@
 
 <main>
 
-<div style="padding:56px 56px 40px;background:var(--white);text-align:center">
+<div style="padding:clamp(20px, 6vw, 56px) clamp(20px, 6vw, 56px) 40px;background:var(--white);text-align:center">
   <p style="font:var(--text-h1);color:var(--color-text);margin:0 0 16px">About Noah Diggs</p>
   <p style="font:italic 400 20px/1.6 var(--font-serif);color:var(--color-primary);max-width:620px;margin:0 auto">“As an artist, educator, musician, and human, I strive to build beautiful worlds in order to teach us how to make our own a better place.”</p>
 </div>
 
-<div style="padding:0 56px 48px;background:var(--white)">
-  <div style="max-width:1120px;margin:0 auto;display:flex;gap:36px;align-items:center">
+<div style="padding:0 clamp(20px, 6vw, 56px) 48px;background:var(--white)">
+  <div class="stack-row" style="max-width:1120px;margin:0 auto;display:flex;gap:36px;align-items:center">
     <image-slot id="about-portrait" shape="rounded" radius="16" style="width:220px;height:260px;flex:none" src="https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,c_limit,w_440/noah-diggs-portfolio/about-portrait" placeholder="Drop portrait photo"></image-slot>
     <div style="display:flex;flex-direction:column;gap:14px">
       <p style="font:var(--text-body);color:var(--color-text);margin:0">As a mixed Filipino-American raised in the United States, I have always possessed a deep desire to broaden my perspective and learn from other cultures. From starting cello lessons at age 8 to beginning dance and movement classes at age 22, I am at my best when I am learning something new. This global mindset eventually led me across the planet to Singapore, where my focus shifted toward international pedagogy, music philanthropy, and arts production management.</p>
@@ -37,11 +37,11 @@
   </div>
 </div>
 
-<div style="padding:var(--space-8) 56px;background:var(--cream-50)">
+<div style="padding:var(--space-8) clamp(20px, 6vw, 56px);background:var(--cream-50)">
   <div style="max-width:1120px;margin:0 auto">
     <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 8px">Core Capabilities &amp; Leadership</p>
     <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 24px">A holistic, multi-sensory approach to international education</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="grid-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
       <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ capStyle }}" hint-size="auto,auto">
         <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="primary" hint-size="auto,24px">Curriculum</x-import>
         <p style="font:600 15px/1.3 var(--font-serif);color:var(--color-text);margin:10px 0 4px">Curriculum Design &amp; IB Alignment</p>
@@ -73,14 +73,14 @@
   </div>
 </div>
 
-<div style="padding:var(--space-8) 56px;background:var(--white)">
+<div style="padding:var(--space-8) clamp(20px, 6vw, 56px);background:var(--white)">
   <div style="max-width:1120px;margin:0 auto">
     <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 32px">My Musical &amp; Educational Timeline</p>
     <div style="position:relative">
-      <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--ink-300)"></div>
+      <div class="timeline-rail" style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--ink-300)"></div>
 
-      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-bottom:36px">
-        <div style="text-align:right;padding-right:24px">
+      <div class="timeline-row" style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-bottom:36px">
+        <div class="timeline-text-r" style="text-align:right;padding-right:24px">
           <p style="font:700 12px var(--font-mono);color:var(--color-primary);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">The Early Years</p>
           <p style="font:600 17px/1.3 var(--font-serif);color:var(--color-text);margin:0 0 8px">Cultivating the Artist</p>
           <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>Age 8</b> — began cello lessons, sparking a nineteen-year (and counting) dedication to the instrument.</p>
@@ -90,10 +90,10 @@
         <div><image-slot id="about-era1" shape="rounded" radius="12" style="width:100%;height:140px" src="https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,c_fill,g_north,w_720,h_187/noah-diggs-portfolio/about-era1" placeholder="Drop photo: young Noah with cello"></image-slot></div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-bottom:36px">
+      <div class="timeline-row" style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-bottom:36px">
         <div><image-slot id="about-era2" shape="rounded" radius="12" style="width:100%;height:140px" src="https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,c_crop,g_south,w_563,h_146/noah-diggs-portfolio/about-era2" placeholder="Drop photo: NUS campus / Singapore"></image-slot></div>
         <div style="display:flex;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:var(--color-accent);border:2px solid var(--ink-900);margin-top:4px"></div></div>
-        <div style="padding-left:24px">
+        <div class="timeline-text-l" style="padding-left:24px">
           <p style="font:700 12px var(--font-mono);color:var(--color-accent);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">University Days</p>
           <p style="font:600 17px/1.3 var(--font-serif);color:var(--color-text);margin:0 0 8px">Expanding Horizons</p>
           <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>The Big Move</b> — emigrated to Singapore for university, immersing in a new culture and history.</p>
@@ -102,8 +102,8 @@
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-bottom:36px">
-        <div style="text-align:right;padding-right:24px">
+      <div class="timeline-row" style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-bottom:36px">
+        <div class="timeline-text-r" style="text-align:right;padding-right:24px">
           <p style="font:700 12px var(--font-mono);color:var(--gold-600);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">Early Career (5 Years)</p>
           <p style="font:600 17px/1.3 var(--font-serif);color:var(--color-text);margin:0 0 8px">Building the Foundation</p>
           <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>Kids' Philharmonic Orchestra</b> — teaching cello, theory, and composition to children ages 2–14.</p>
@@ -114,10 +114,10 @@
         <div><image-slot id="about-era3" shape="rounded" radius="12" style="width:100%;height:140px" src="https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,c_limit,w_800/noah-diggs-portfolio/about-era3" placeholder="Drop photo: teaching young children"></image-slot></div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0">
+      <div class="timeline-row" style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0">
         <div><image-slot id="about-era4" shape="rounded" radius="12" style="width:100%;height:140px" src="https://res.cloudinary.com/xmobf5bj/image/upload/f_auto,q_auto,c_limit,w_800/noah-diggs-portfolio/about-era4" placeholder="Drop photo: Stamford American / performance"></image-slot></div>
         <div style="display:flex;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:var(--color-primary);border:2px solid var(--ink-900);margin-top:4px"></div></div>
-        <div style="padding-left:24px">
+        <div class="timeline-text-l" style="padding-left:24px">
           <p style="font:700 12px var(--font-mono);color:var(--color-primary);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">2023 – Present</p>
           <p style="font:600 17px/1.3 var(--font-serif);color:var(--color-text);margin:0 0 8px">International Educator</p>
           <p style="font:var(--text-small);color:var(--color-text-muted);margin:0 0 6px"><b>Stamford American International School</b> — elementary music specialist in Singapore; Grades 1–3 classroom music, Grade 1–5 choir, Grades 1–12 orchestras.</p>
@@ -129,7 +129,7 @@
   </div>
 </div>
 
-<section style="padding:var(--space-9) 56px">
+<section style="padding:var(--space-9) clamp(20px, 6vw, 56px)">
   <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ ctaCardStyle }}" hint-size="auto,auto">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
       <p style="font:var(--text-h3);color:var(--color-text);margin:0;max-width:560px">Looking to elevate your music department? Let's bring student creativity to center stage.</p>
@@ -138,7 +138,7 @@
   </x-import>
 </section>
 
-<footer style="border-top:2px solid var(--ink-900);padding:var(--space-6) 56px;background:var(--white)">
+<footer style="border-top:2px solid var(--ink-900);padding:var(--space-6) clamp(20px, 6vw, 56px);background:var(--white)">
   <div style="max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
     <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><a href="https://www.linkedin.com/in/noahdiggs/" target="_blank" rel="noopener">LinkedIn</a> · noahtheartsworker@gmail.com</p>
     <img src="brand/ngjd-logo.svg" style="height:56px;width:auto;flex:none" alt="Noah Gabriel Juliana Diggs monogram">

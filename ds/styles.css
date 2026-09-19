@@ -2,3 +2,60 @@
 @import './tokens/typography.css';
 @import './tokens/spacing.css';
 @import './tokens/shadows.css';
+
+/* Responsive layout overrides. The dc-runtime re-serializes every inline
+   style attribute through React (reformatted spacing, normalized values),
+   so matching on the original inline style text is unreliable — these
+   target dedicated classes added to the markup instead. */
+
+/* Grid items default to min-width:auto, so without min-width:0 their
+   content (unbreakable headings, a fixed-width MediaCard, etc.) can force
+   a track wider than its column at ANY viewport width, not just mobile —
+   so this applies unconditionally. Each <x-import> is hosted in a
+   "display:contents" wrapper (invisible to layout), so the real grid item
+   is the wrapper's child, not the wrapper itself — hence ">*>*" as well
+   as ">*". */
+.grid-2col > *,
+.grid-2col > * > *,
+.grid-3col > *,
+.grid-3col > * > *,
+.grid-4col > *,
+.grid-4col > * > *,
+.grid-5col > *,
+.grid-5col > * > * { min-width: 0; }
+
+@media (max-width: 900px) {
+  .grid-3col,
+  .grid-4col { grid-template-columns: repeat(2,1fr) !important; }
+}
+
+@media (max-width: 640px) {
+  /* Collapse multi-column grids to a single column */
+  .grid-2col,
+  .grid-3col,
+  .grid-4col { grid-template-columns: 1fr !important; }
+  .grid-5col { grid-template-columns: repeat(2,1fr) !important; }
+
+  /* About page timeline: collapse the left-column/dot/right-column layout
+     and de-emphasize the alternating alignment, which only makes sense
+     side-by-side */
+  .timeline-row { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .timeline-text-r { text-align: left !important; padding-right: 0 !important; }
+  .timeline-text-l { padding-left: 0 !important; }
+  .timeline-rail { display: none !important; }
+
+  /* Stack flex rows that pair a fixed-width photo with body text */
+  .stack-row { flex-direction: column !important; align-items: flex-start !important; }
+  .quote-row { margin-left: 0 !important; }
+
+  /* The hero's "rehearsal" card is vertically centered with a
+     margin-bottom nudge sized for desktop, to clear the bottom text
+     overlay. On mobile that overlay wraps onto more lines (a large
+     clamp()'d title, a two-line tagline, two stacked buttons) and needs
+     roughly 400px on its own, which a 560px hero can't also give the
+     card without them colliding. Pin the card to the top, shrink its
+     footprint, and grow the hero to fit both comfortably. */
+  .hero-placeholder { height: 640px !important; align-items: flex-start !important; padding-top: clamp(16px, 6vw, 36px) !important; box-sizing: border-box !important; }
+  .hero-card { margin-bottom: 0 !important; padding: 20px 24px !important; gap: 12px !important; }
+  .hero-status { font-size: 20px !important; }
+}
