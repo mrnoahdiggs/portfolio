@@ -5,3 +5,5 @@
 wrangler.toml
 node_modules
 .DS_Store
+worker.js
+.dev.vars

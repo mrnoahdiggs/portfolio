@@ -4,6 +4,7 @@ Static site for Noah Diggs' music educator portfolio. Pure HTML/CSS/JS —
 no build step required.
 
 - `index.html` — main landing page
+- `testimonial.html`, `testimonials-review.html`, `worker.js` — testimonial collection (see below)
 - `about.html`, `gallery.html`, `contact.html`, `brand-sheet.html` — additional pages
 - `ds/` — design system (styles, tokens, components)
 - `brand/` — logo assets
@@ -32,6 +33,28 @@ hand for an existing upload:
 - `cld.imageUrl(publicId, { width })` — optimized image URL (auto format/quality)
 - `cld.videoUrl(publicId, { width })` — optimized video URL
 - `cld.videoPosterUrl(publicId, { width })` — a JPG poster frame for a video
+
+## Collecting testimonials
+
+- `testimonial.html` — the page to send people (`https://noahdiggs.com/testimonial`).
+  They write a testimonial, give a name or stay anonymous, pick a role
+  (parent, teacher, principal, student, …) and choose an avatar: initials,
+  an emoji, or one of the curated icons. A live preview shows how it will look.
+  Add `?name=Jane%20Doe&role=Parent` to the link to pre-fill it for someone.
+- `testimonials-review.html` — private page for approving, rejecting,
+  deleting, and copying submissions. Not linked anywhere, and marked noindex.
+- `worker.js` — the small Worker API behind both pages. Submissions are
+  stored in the `portfolio-testimonials` KV namespace (bound as
+  `TESTIMONIALS` in `wrangler.toml`) and start as **pending**. Approved ones
+  are publicly readable at `/api/testimonials/approved`, ready to feed the
+  homepage.
+
+**One-time setup:** the review page needs an admin password. In the
+Cloudflare dashboard open **Workers & Pages → portfolio → Settings →
+Variables and Secrets**, add a **Secret** named `ADMIN_TOKEN` with a long
+random value, and use that value to sign in on the review page. (Or run
+`npx wrangler secret put ADMIN_TOKEN`.) For local testing with `wrangler dev`, put
+`ADMIN_TOKEN=...` in a `.dev.vars` file (gitignored).
 
 ## Deploying to Cloudflare Pages
 
