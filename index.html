@@ -91,6 +91,27 @@
   </div>
 </section>
 
+<section id="videos" style="padding:0 clamp(20px, 6vw, 56px) var(--space-8)">
+  <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ videoCardStyle }}" hint-size="auto,auto">
+    <div class="video-showcase" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:48px;align-items:center">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px">
+        <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="highlight" hint-size="auto,26px">In the Classroom</x-import>
+        <p style="font:var(--text-h2);color:var(--color-text);margin:0;text-wrap:balance">See the classroom in action</p>
+        <p style="font:var(--text-body);color:var(--color-text-muted);margin:0;max-width:44ch">Two clips from my early-years music room: a practice video that helps Grade 1–2 singers learn the lyrics, melody, and movement for <i>Garden Song</i>, and the warm-up routine that gets Grade 1 players ready for their instruments.</p>
+        <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="md" onClick="{{ goGallery }}" hint-size="auto,48px">Open the video gallery →</x-import>
+      </div>
+      <div class="video-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+        <div class="vp-item">
+          <x-import component="MediaCard" from="./ds/components/cards/MediaCard.jsx" title="Garden Song: Choir Practice" meta="Grades 1–2 · Choir" kind="video" video-src="https://res.cloudinary.com/xmobf5bj/video/upload/q_auto,w_720/rxhnuuxfrutbiw83qfve.mp4" poster="https://res.cloudinary.com/xmobf5bj/video/upload/f_jpg,q_auto,w_720/rxhnuuxfrutbiw83qfve.jpg" card-style="{{ videoTileStyle }}" aspect-ratio="9 / 16" hint-size="100%,520px"></x-import>
+        </div>
+        <div class="vp-item">
+          <x-import component="MediaCard" from="./ds/components/cards/MediaCard.jsx" title="Grade 1 Warm-Up Sequence" meta="Grade 1 · Classroom instruments" kind="video" video-src="https://res.cloudinary.com/xmobf5bj/video/upload/q_auto,w_720/zpm2rzjfmh5bdxyjdros.mp4" poster="https://res.cloudinary.com/xmobf5bj/video/upload/f_jpg,q_auto,w_720/zpm2rzjfmh5bdxyjdros.jpg" card-style="{{ videoTileStyle }}" aspect-ratio="9 / 16" hint-size="100%,520px"></x-import>
+        </div>
+      </div>
+    </div>
+  </x-import>
+</section>
+
 <section style="padding:var(--space-8) clamp(20px, 6vw, 56px);background:var(--white)">
   <div style="max-width:1120px;margin:0 auto">
     <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 28px">Core Qualifications &amp; Pedagogies</p>
@@ -139,7 +160,7 @@
   <div style="max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
     <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><a href="https://www.linkedin.com/in/noahdiggs/" target="_blank" rel="noopener">LinkedIn</a> · noahtheartsworker@gmail.com</p>
     <img src="brand/ngjd-logo.svg" style="height:56px;width:auto;flex:none" alt="Noah Gabriel Juliana Diggs monogram">
-    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><a href="about.html">About</a> · <a href="contact.html">Contact</a></p>
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><a href="about.html">About</a> · <a href="gallery.html">Gallery</a> · <a href="contact.html">Contact</a></p>
   </div>
 </footer>
 
@@ -210,9 +231,12 @@ class Component extends DCLogic {
 
   renderVals() {
     return {
-      navLinks: ['Home', 'About', 'Contact', 'LinkedIn'],
+      navLinks: ['Home', 'About', 'Gallery', 'Contact', 'LinkedIn'],
       window: window,
       goContact: () => window.dcNav.navigateTo('Contact'),
+      goGallery: () => window.dcNav.navigateTo('Gallery'),
+      videoCardStyle: { maxWidth: '1120px', margin: '0 auto', padding: 'clamp(20px, 5vw, 40px)' },
+      videoTileStyle: { width: '100%' },
       testimonialTrackRef: this.testimonialTrackRef,
       testimonials: this.TESTIMONIALS.map((t, i) => ({ ...t, slotId: 'testimonial-photo-' + i })),
       scrollPrev: () => this.scroll(-1),

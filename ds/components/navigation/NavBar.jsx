@@ -11,7 +11,7 @@ function NavBar({ links = [], active, brand = 'Noah Diggs', logoSrc, onSelect })
         {logoSrc && <img src={logoSrc} style={{ height: '56px', width: 'auto' }} alt="" />}
         <span style={{ font: '600 22px/1 var(--font-serif)', color: 'var(--color-text)' }}>{brand}</span>
       </span>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(14px, 4vw, 28px)' }}>
+      <div className="nav-links" style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(14px, 4vw, 28px)' }}>
         {links.map((l) => (
           <a key={l} href="#" onClick={(e) => { e.preventDefault(); onSelect && onSelect(l); }} style={{
             font: '600 14px/1 var(--font-sans)', textTransform: 'uppercase', letterSpacing: '0.04em',

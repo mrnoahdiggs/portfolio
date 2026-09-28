@@ -27,6 +27,9 @@
 @media (max-width: 900px) {
   .grid-3col,
   .grid-4col { grid-template-columns: repeat(2,1fr) !important; }
+
+  /* Homepage video showcase: stack the intro text above the videos */
+  .video-showcase { grid-template-columns: 1fr !important; gap: 28px !important; }
 }
 
 @media (max-width: 640px) {
@@ -58,4 +61,26 @@
   .hero-placeholder { height: 640px !important; align-items: flex-start !important; padding-top: clamp(16px, 6vw, 36px) !important; box-sizing: border-box !important; }
   .hero-card { margin-bottom: 0 !important; padding: 20px 24px !important; gap: 12px !important; }
   .hero-status { font-size: 20px !important; }
+
+  /* Nav: give the links their own full-width row and spread them evenly,
+     so all five fit on one line instead of wrapping unevenly. */
+  .nav-links { width: 100%; justify-content: space-between; gap: 8px !important; }
+  .nav-links a { font-size: 13px !important; }
+
+  /* Let the two portrait videos scroll sideways (one and a bit visible)
+     rather than squeezing both into half-width columns. */
+  .video-pair {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px !important;
+    padding-bottom: 8px;
+    margin-right: calc(-1 * clamp(20px, 5vw, 40px));
+    padding-right: clamp(20px, 5vw, 40px);
+  }
+  .video-pair > .vp-item { flex: 0 0 72%; scroll-snap-align: start; }
+}
+
+@media (max-width: 380px) {
+  .nav-links a { font-size: 12px !important; letter-spacing: 0.02em !important; }
 }
