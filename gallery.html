@@ -41,9 +41,9 @@
         <span onClick="{{ tab.onClick }}" style="{{ tab.style }}">{{ tab.label }}</span>
       </sc-for>
     </div>
-    <div class="grid-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+    <div class="grid-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start">
       <sc-for list="{{ currentClips }}" as="clip" hint-placeholder-count="3">
-        <x-import component="MediaCard" from="./ds/components/cards/MediaCard.jsx" title="{{ clip.title }}" meta="{{ clip.meta }}" kind="video" hint-size="100%,260px"></x-import>
+        <x-import component="MediaCard" from="./ds/components/cards/MediaCard.jsx" title="{{ clip.title }}" meta="{{ clip.meta }}" kind="video" video-src="{{ clip.videoSrc }}" poster="{{ clip.poster }}" aspect-ratio="{{ clip.aspectRatio }}" hint-size="100%,260px"></x-import>
       </sc-for>
     </div>
   </div>
@@ -75,8 +75,20 @@ class Component extends DCLogic {
 
   GALLERY = {
     classroom: [
-      { title: 'Percussion improv', meta: "Grade 3 Orff ensemble improvising a percussion piece" },
-      { title: 'Student rounds', meta: "Grade 5 recorder class performing a student-composed round" },
+      {
+        title: 'Garden Song: Choir Practice',
+        meta: "Practice video for Grades 1–2, used to learn the lyrics, melody, and movement for their choir performance",
+        videoSrc: 'https://res.cloudinary.com/xmobf5bj/video/upload/q_auto,w_720/rxhnuuxfrutbiw83qfve.mp4',
+        poster: 'https://res.cloudinary.com/xmobf5bj/video/upload/f_jpg,q_auto,w_720/rxhnuuxfrutbiw83qfve.jpg',
+        aspectRatio: '9 / 16'
+      },
+      {
+        title: 'Grade 1 Warm-Up Sequence',
+        meta: "Vocal echo exercises and instrument-holding technique that get young players ready before they pick up their instruments",
+        videoSrc: 'https://res.cloudinary.com/xmobf5bj/video/upload/q_auto,w_720/zpm2rzjfmh5bdxyjdros.mp4',
+        poster: 'https://res.cloudinary.com/xmobf5bj/video/upload/f_jpg,q_auto,w_720/zpm2rzjfmh5bdxyjdros.jpg',
+        aspectRatio: '9 / 16'
+      },
       { title: 'Rhythm circle', meta: "Kindergarten movement & rhythm circle" }
     ],
     ensemble: [
@@ -119,7 +131,7 @@ class Component extends DCLogic {
           }
         };
       }),
-      currentClips: this.GALLERY[this.state.activeTab],
+      currentClips: this.GALLERY[this.state.activeTab].map(c => ({ videoSrc: '', poster: '', aspectRatio: '4 / 3', ...c })),
       ctaCardStyle: { maxWidth: '1120px', margin: '0 auto' }
     };
   }

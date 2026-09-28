@@ -1,5 +1,5 @@
 
-function MediaCard({ title, meta, kind = 'video', thumbnail, cardStyle, aspectRatio = '4 / 3' }) {
+function MediaCard({ title, meta, kind = 'video', thumbnail, videoSrc, poster, cardStyle, aspectRatio = '4 / 3' }) {
   return (
     <div style={{ width: '280px', fontFamily: 'var(--font-sans)', ...cardStyle }}>
       <div
@@ -7,14 +7,27 @@ function MediaCard({ title, meta, kind = 'video', thumbnail, cardStyle, aspectRa
         onMouseLeave={(e) => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = 'var(--shadow-pop-sm)'; }}
         style={{
         aspectRatio,
-        background: thumbnail ? `url(${thumbnail}) center/cover` : 'var(--ink-200)',
+        background: videoSrc ? 'var(--ink-900)' : thumbnail ? `url(${thumbnail}) center/cover` : 'var(--ink-200)',
         border: '2px solid var(--ink-900)',
         borderRadius: 'var(--radius-md)',
         boxShadow: 'var(--shadow-pop-sm)',
         transition: 'transform 0.15s ease, box-shadow 0.15s ease',
         position: 'relative',
+        overflow: 'hidden',
       }}>
+        {videoSrc && (
+          <video
+            src={videoSrc}
+            poster={poster}
+            controls
+            playsInline
+            preload="none"
+            aria-label={title}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+          />
+        )}
         <span style={{
+          pointerEvents: 'none',
           position: 'absolute', top: '10px', left: '10px',
           font: 'var(--text-label)', background: 'var(--color-primary)', color: '#fff',
           padding: '4px 10px', borderRadius: 'var(--radius-full)', textTransform: 'uppercase',
