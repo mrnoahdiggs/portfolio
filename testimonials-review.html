@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testimonial Review | Noah Diggs</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+<link rel="stylesheet" href="ds/styles.css">
+<script src="./testimonial-icons.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-sans); color: var(--color-text); }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 32px 16px 80px; }
+  h1 { font: var(--text-h2); margin: 0 0 6px; }
+  .muted { font: var(--text-small); color: var(--color-text-muted); margin: 0; }
+  .bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin: 24px 0; }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filters button, .btn { font: 600 14px/1 var(--font-sans); border: 2px solid var(--ink-900); background: var(--white); color: var(--color-text); padding: 9px 14px; border-radius: var(--radius-full); cursor: pointer; }
+  .filters button[aria-pressed=true] { background: var(--ink-900); color: var(--cream-50); }
+  .btn { border-radius: var(--radius-md); }
+  .btn.primary { background: var(--color-primary); color: var(--white); }
+  .btn.teal { background: var(--color-accent); color: var(--white); }
+  .btn.danger { color: var(--color-error); border-color: var(--color-error); }
+  .login { background: var(--white); border: 2px solid var(--ink-900); border-radius: var(--radius-lg); box-shadow: var(--shadow-pop); padding: 24px; max-width: 460px; margin-top: 24px; }
+  .login input { width: 100%; font: var(--text-body); padding: 10px 12px; border: 2px solid var(--ink-300); border-radius: var(--radius-md); margin: 10px 0 14px; }
+  .error { color: var(--color-error); background: var(--color-error-bg); border-radius: var(--radius-sm); padding: 10px 14px; font: 500 14px/1.4 var(--font-sans); }
+  .list { display: flex; flex-direction: column; gap: 20px; }
+  .item { background: var(--white); border: 2px solid var(--ink-900); border-radius: var(--radius-lg); padding: 20px; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--ink-900); display: flex; align-items: center; justify-content: center; }
+  .avatar-initials { font: 700 20px/1 var(--font-sans); }
+  .avatar-emoji { font-size: 28px; line-height: 1; }
+  .quote { font: italic 400 18px/1.55 var(--font-serif); margin: 0 0 12px; white-space: pre-line; overflow-wrap: anywhere; }
+  .name { font: 700 14px/1.3 var(--font-sans); color: var(--color-primary); margin: 0; }
+  .meta { font: var(--text-small); color: var(--color-text-muted); margin: 2px 0 0; overflow-wrap: anywhere; }
+  .private { margin-top: 12px; padding: 10px 12px; background: var(--cream-50); border-radius: var(--radius-sm); font: var(--text-small); color: var(--ink-700); overflow-wrap: anywhere; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; align-items: center; }
+  .status { font: var(--text-label); text-transform: uppercase; letter-spacing: .06em; padding: 4px 10px; border-radius: var(--radius-full); }
+  .status.pending { background: var(--gold-100); color: var(--ink-900); }
+  .status.approved { background: var(--teal-100); color: var(--teal-800); }
+  .status.rejected { background: var(--ink-100); color: var(--ink-600); }
+  .empty { text-align: center; padding: 48px 16px; color: var(--color-text-muted); font: var(--text-body); }
+  .share { background: var(--white); border: 2px dashed var(--ink-300); border-radius: var(--radius-md); padding: 14px 16px; margin-top: 16px; font: var(--text-small); }
+  .share code { font-family: var(--font-mono); background: var(--cream-50); padding: 2px 6px; border-radius: 4px; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Testimonial review</h1>
+  <p class="muted">Private page. Approved testimonials appear in the homepage's "Kind Words" section within about 5 minutes.</p>
+  <div class="share">Share this link to collect testimonials: <code id="share-link"></code> <button class="btn" type="button" id="copy-link" style="padding:6px 10px;margin-left:6px">Copy</button><br>
+    Tip: add <code>?name=Jane%20Doe&amp;role=Parent</code> to pre-fill the form for a specific person.
+  </div>
+
+  <form class="login" id="login" hidden>
+    <label for="token" style="font:600 16px var(--font-sans)">Admin token</label>
+    <input type="password" id="token" autocomplete="current-password" required>
+    <button class="btn primary" type="submit">Sign in</button>
+  </form>
+
+  <p class="error" id="error" hidden></p>
+
+  <div id="dash" hidden>
+    <div class="bar">
+      <div class="filters" id="filters"></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn" type="button" id="refresh">Refresh</button>
+        <button class="btn" type="button" id="signout">Sign out</button>
+      </div>
+    </div>
+    <div class="list" id="list"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var T = window.testimonialIcons;
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = 'testimonial-admin-token';
+  var token = '';
+  try { token = localStorage.getItem(KEY) || ''; } catch (e) {}
+  var all = [];
+  var filter = 'pending';
+
+  var link = location.origin + '/testimonial.html';
+  $('share-link').textContent = link;
+  $('copy-link').addEventListener('click', function () {
+    navigator.clipboard.writeText(link).then(function () { $('copy-link').textContent = 'Copied!'; setTimeout(function () { $('copy-link').textContent = 'Copy'; }, 1500); });
+  });
+
+  ['pending', 'approved', 'rejected', 'all'].forEach(function (f) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.value = f;
+    b.addEventListener('click', function () { filter = f; render(); });
+    $('filters').appendChild(b);
+  });
+
+  function api(path, opts) {
+    opts = opts || {};
+    opts.headers = Object.assign({ Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' }, opts.headers || {});
+    return fetch('/api/testimonials' + path, opts).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (res.status === 401) { signOut(); throw new Error('That token was not accepted.'); }
+        if (!res.ok) throw new Error(data.error || 'Request failed (' + res.status + ')');
+        return data;
+      });
+    });
+  }
+
+  function showError(msg) { $('error').textContent = msg || ''; $('error').hidden = !msg; }
+
+  function load() {
+    showError('');
+    return api('').then(function (data) {
+      all = data.testimonials || [];
+      $('login').hidden = true;
+      $('dash').hidden = false;
+      render();
+    }).catch(function (e) { showError(e.message); });
+  }
+
+  function signOut() {
+    token = '';
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    $('dash').hidden = true;
+    $('login').hidden = false;
+  }
+
+  function setStatus(id, status) {
+    return api('/' + encodeURIComponent(id), { method: 'PATCH', body: JSON.stringify({ status: status }) })
+      .then(function (data) {
+        all = all.map(function (t) { return t.id === id ? data.testimonial : t; });
+        render();
+      }).catch(function (e) { showError(e.message); });
+  }
+
+  function remove(id) {
+    if (!confirm('Delete this testimonial permanently?')) return;
+    api('/' + encodeURIComponent(id), { method: 'DELETE' })
+      .then(function () { all = all.filter(function (t) { return t.id !== id; }); render(); })
+      .catch(function (e) { showError(e.message); });
+  }
+
+  function render() {
+    Array.prototype.forEach.call($('filters').children, function (b) {
+      var f = b.dataset.value;
+      var n = f === 'all' ? all.length : all.filter(function (t) { return t.status === f; }).length;
+      b.textContent = f[0].toUpperCase() + f.slice(1) + ' (' + n + ')';
+      b.setAttribute('aria-pressed', String(f === filter));
+    });
+    var items = filter === 'all' ? all : all.filter(function (t) { return t.status === filter; });
+    var list = $('list');
+    list.innerHTML = '';
+    if (!items.length) { list.innerHTML = '<div class="empty">Nothing here yet.</div>'; return; }
+    items.forEach(function (t) {
+      var e = T.escapeHtml;
+      var c = T.colorOf(t.icon && t.icon.color);
+      var el = document.createElement('div');
+      el.className = 'item';
+      var privateBits = [];
+      if (t.relationship) privateBits.push('<strong>Context:</strong> ' + e(t.relationship));
+      if (t.email) privateBits.push('<strong>Email:</strong> <a href="mailto:' + e(t.email) + '">' + e(t.email) + '</a>');
+      el.innerHTML =
+        '<div class="avatar" style="background:' + c.bg + ';color:' + c.fg + '">' + T.avatarHtml(t.icon, 56) + '</div>' +
+        '<div>' +
+          '<p class="quote">“' + e(t.quote) + '”</p>' +
+          '<p class="name">' + (t.anonymous ? 'Anonymous' : e(t.name)) + '</p>' +
+          '<p class="meta">' + e(t.role) + (t.organization ? ', ' + e(t.organization) : '') + '</p>' +
+          '<p class="meta">Submitted ' + e(new Date(t.submittedAt).toLocaleString()) + '</p>' +
+          (privateBits.length ? '<div class="private">' + privateBits.join('<br>') + '</div>' : '') +
+          '<div class="actions">' +
+            '<span class="status ' + e(t.status) + '">' + e(t.status) + '</span>' +
+            (t.status !== 'approved' ? '<button class="btn teal" data-act="approved">Approve</button>' : '') +
+            (t.status !== 'rejected' ? '<button class="btn" data-act="rejected">Reject</button>' : '') +
+            (t.status !== 'pending' ? '<button class="btn" data-act="pending">Back to pending</button>' : '') +
+            '<button class="btn danger" data-act="delete">Delete</button>' +
+          '</div>' +
+        '</div>';
+      el.querySelectorAll('button[data-act]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var act = b.dataset.act;
+          if (act === 'delete') remove(t.id);
+          else setStatus(t.id, act);
+        });
+      });
+      list.appendChild(el);
+    });
+  }
+
+  $('login').addEventListener('submit', function (e) {
+    e.preventDefault();
+    token = $('token').value.trim();
+    try { localStorage.setItem(KEY, token); } catch (err) {}
+    load();
+  });
+  $('refresh').addEventListener('click', load);
+  $('signout').addEventListener('click', signOut);
+
+  if (token) load(); else $('login').hidden = false;
+})();
+</script>
+</body>
+</html>

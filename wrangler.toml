@@ -1,5 +1,17 @@
 name = "portfolio"
+main = "worker.js"
 compatibility_date = "2026-09-06"
 
 [assets]
 directory = "."
+binding = "ASSETS"
+# Only API calls run the Worker script; every other request is served
+# directly from the static files.
+run_worker_first = ["/api/*"]
+
+# Testimonial submissions (see worker.js). Admin endpoints also need an
+# ADMIN_TOKEN secret: set it under the Worker's Settings → Variables and
+# Secrets in the Cloudflare dashboard, or run `npx wrangler secret put ADMIN_TOKEN`.
+[[kv_namespaces]]
+binding = "TESTIMONIALS"
+id = "a12803ca5cb74b388b5d4ad85d374cb2"

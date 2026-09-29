@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Share a Testimonial | Noah Diggs</title>
+<meta name="description" content="Share a few words about learning, teaching, or working with Noah Diggs.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+<link rel="stylesheet" href="ds/styles.css">
+<script src="./testimonial-icons.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-sans); color: var(--color-text); }
+  a { color: var(--color-primary); }
+  a:hover { color: var(--color-primary-hover); }
+
+  .site-header { background: var(--white); border-bottom: 2px solid var(--ink-900); padding: 14px clamp(16px, 5vw, 56px); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .site-header img { height: 48px; width: auto; display: block; }
+  .site-header a.home { font: 600 14px/1 var(--font-sans); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text); text-decoration: none; }
+  .site-header a.home:hover { color: var(--color-primary); }
+
+  .intro { text-align: center; padding: clamp(32px, 6vw, 64px) 16px 8px; max-width: 720px; margin: 0 auto; }
+  .eyebrow { font: var(--text-label); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent); margin: 0 0 12px; }
+  .intro h1 { font: var(--text-h1); margin: 0 0 14px; }
+  .intro p:not(.eyebrow) { font: var(--text-body-lg); color: var(--color-text-muted); margin: 0; }
+
+  .layout { max-width: 1120px; margin: 0 auto; padding: 32px clamp(16px, 5vw, 56px) 72px; display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; align-items: start; }
+  .card { background: var(--white); border: 2px solid var(--ink-900); border-radius: var(--radius-lg); box-shadow: var(--shadow-pop); padding: clamp(20px, 4vw, 36px); }
+
+  fieldset { border: 0; padding: 0; margin: 0 0 32px; min-width: 0; }
+  legend, .label { font: 600 18px/1.3 var(--font-serif); color: var(--color-text); padding: 0; margin: 0 0 6px; display: block; }
+  .hint { font: var(--text-small); color: var(--color-text-muted); margin: 0 0 12px; }
+  .step { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--orange-100); color: var(--orange-800); font: 700 13px/1 var(--font-mono); margin-right: 8px; vertical-align: 2px; }
+
+  input[type=text], input[type=email], textarea {
+    width: 100%; font: var(--text-body); color: var(--color-text); background: var(--cream-50);
+    border: 2px solid var(--ink-300); border-radius: var(--radius-md); padding: 12px 14px; transition: border-color .12s;
+  }
+  input[type=text]:focus, input[type=email]:focus, textarea:focus { outline: none; border-color: var(--color-primary); background: var(--white); }
+  input:disabled { opacity: .5; }
+  textarea { min-height: 170px; resize: vertical; font: 400 17px/1.6 var(--font-serif); }
+  .counter { font: var(--text-small); color: var(--ink-500); text-align: right; margin-top: 4px; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font: 600 14px/1.3 var(--font-sans); margin-bottom: 6px; }
+  .field .optional { font-weight: 400; color: var(--ink-500); }
+
+  .toggle { display: flex; align-items: center; gap: 10px; font: 500 15px/1.4 var(--font-sans); cursor: pointer; margin-top: 4px; }
+  .toggle input { width: 20px; height: 20px; accent-color: var(--color-primary); margin: 0; flex: none; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { position: relative; }
+  .chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .chip span { display: inline-block; padding: 9px 16px; border: 2px solid var(--ink-900); border-radius: var(--radius-full); background: var(--white); font: 600 14px/1.2 var(--font-sans); transition: background .12s, box-shadow .12s, transform .12s; }
+  .chip input:hover + span { background: var(--orange-50); }
+  .chip input:checked + span { background: var(--color-primary); color: var(--white); box-shadow: var(--shadow-pop-sm); transform: translate(-1px, -1px); }
+  .chip input:focus-visible + span { outline: 3px solid var(--teal-300); outline-offset: 2px; }
+  #role-other-wrap { margin-top: 12px; }
+
+  .tabs { display: flex; gap: 6px; background: var(--ink-100); border-radius: var(--radius-full); padding: 4px; margin-bottom: 16px; width: fit-content; max-width: 100%; }
+  .tabs button { font: 600 14px/1 var(--font-sans); border: 0; background: transparent; color: var(--ink-700); padding: 10px 16px; border-radius: var(--radius-full); cursor: pointer; }
+  .tabs button[aria-selected=true] { background: var(--white); color: var(--color-text); box-shadow: 0 0 0 2px var(--ink-900); }
+  .tabs button:disabled { opacity: .45; cursor: not-allowed; }
+  .tabs button:focus-visible { outline: 3px solid var(--teal-300); }
+
+  .grid-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 8px; }
+  .pick { height: 52px; border: 2px solid var(--ink-200); border-radius: var(--radius-md); background: var(--white); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--teal-700); padding: 0; transition: border-color .12s, transform .12s; }
+  .pick:hover { border-color: var(--ink-500); }
+  .pick[aria-pressed=true] { border-color: var(--ink-900); background: var(--orange-50); box-shadow: var(--shadow-pop-sm); transform: translate(-1px, -1px); color: var(--orange-700); }
+  .pick:focus-visible { outline: 3px solid var(--teal-300); outline-offset: 2px; }
+  .custom-emoji { display: flex; align-items: center; gap: 10px; margin-top: 12px; font: var(--text-small); color: var(--color-text-muted); }
+  .custom-emoji input { width: 72px !important; text-align: center; font-size: 22px !important; padding: 6px !important; }
+  .initials-panel { display: flex; align-items: center; gap: 16px; font: var(--text-small); color: var(--color-text-muted); }
+  .palette { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; align-items: center; }
+  .swatch { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--ink-900); cursor: pointer; padding: 0; }
+  .swatch[aria-pressed=true] { box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--ink-900); }
+
+  .avatar { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--ink-900); display: flex; align-items: center; justify-content: center; flex: none; background: var(--orange-100); color: var(--orange-800); }
+  .avatar-initials { font: 700 20px/1 var(--font-sans); letter-spacing: .02em; }
+  .avatar-emoji { font-size: 28px; line-height: 1; }
+
+  .consent { background: var(--cream-50); border: 2px dashed var(--ink-300); border-radius: var(--radius-md); padding: 14px 16px; }
+  .consent .toggle { align-items: flex-start; font-weight: 400; }
+  .consent .toggle input { margin-top: 2px; }
+
+  .submit-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
+  .btn { font: 600 18px/1.2 var(--font-sans); padding: 16px 34px; border-radius: var(--radius-md); border: 2px solid var(--ink-900); background: var(--color-primary); color: var(--white); box-shadow: var(--shadow-pop); cursor: pointer; transition: transform .12s, box-shadow .12s; }
+  .btn:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink-900); }
+  .btn:active:not(:disabled) { transform: translate(3px, 3px); box-shadow: none; }
+  .btn:disabled { opacity: .6; cursor: progress; }
+  .btn.outline { background: var(--white); color: var(--color-text); font-size: 16px; padding: 12px 24px; }
+  .error { color: var(--color-error); background: var(--color-error-bg); border-radius: var(--radius-sm); padding: 10px 14px; font: 500 14px/1.4 var(--font-sans); margin: 0; }
+  .honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .preview { position: sticky; top: 24px; }
+  .preview .eyebrow { text-align: left; }
+  .quote-card { background: var(--cream-50); border: 2px solid var(--ink-900); border-radius: var(--radius-lg); box-shadow: var(--shadow-pop-accent); padding: var(--space-6); }
+  .quote-card .quote { font: italic 400 19px/1.5 var(--font-serif); margin: 0 0 20px; white-space: pre-line; overflow-wrap: anywhere; }
+  .quote-card .quote.placeholder { color: var(--ink-400); }
+  .who { display: flex; align-items: center; gap: 14px; }
+  .who .name { font: 700 14px/1.3 var(--font-sans); color: var(--color-primary); margin: 0; overflow-wrap: anywhere; }
+  .who .role { font: var(--text-small); color: var(--color-text-muted); margin: 0; overflow-wrap: anywhere; }
+  .preview-note { font: var(--text-small); color: var(--color-text-muted); margin: 16px 4px 0; }
+
+  .thanks { max-width: 640px; margin: 0 auto; padding: 24px 16px 96px; text-align: center; }
+  .thanks .card { text-align: center; }
+  .thanks .big { font-size: 48px; margin: 0 0 8px; }
+  .thanks h2 { font: var(--text-h2); margin: 0 0 12px; }
+  .thanks p { font: var(--text-body-lg); color: var(--color-text-muted); margin: 0 0 24px; }
+
+  footer { border-top: 2px solid var(--ink-900); background: var(--white); padding: 24px clamp(16px, 5vw, 56px); text-align: center; font: var(--text-small); color: var(--color-text-muted); }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .preview { position: static; order: -1; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="./index.html" aria-label="Noah Diggs home"><img src="brand/ngjd-logo.svg" alt="Noah Gabriel Juliana Diggs monogram"></a>
+  <a class="home" href="./index.html">Visit noahdiggs.com →</a>
+</header>
+
+<main id="main">
+  <div class="intro">
+    <p class="eyebrow">Share your experience</p>
+    <h1>Leave a testimonial</h1>
+    <p>Thank you for helping! A few honest words about learning, teaching, or working together mean a lot. Selected testimonials may appear on noahdiggs.com.</p>
+  </div>
+
+  <div class="layout" id="form-view">
+    <form class="card" id="form" novalidate>
+      <fieldset>
+        <legend><span class="step">1</span>Your testimonial</legend>
+        <p class="hint">What was it like to learn, teach, or work with Noah? A specific moment or change you noticed is perfect.</p>
+        <textarea id="quote" name="quote" maxlength="1200" required aria-describedby="quote-count" placeholder="Noah helped my child…"></textarea>
+        <div class="counter" id="quote-count">0 / 1200</div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step">2</span>Your name</legend>
+        <div class="field">
+          <label for="name">Name as you'd like it shown</label>
+          <input type="text" id="name" name="name" maxlength="80" autocomplete="name" placeholder="e.g. Priya Shah or P. Shah">
+        </div>
+        <label class="toggle"><input type="checkbox" id="anonymous"> Stay anonymous — show my testimonial without a name</label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step">3</span>Your role</legend>
+        <p class="hint">How do you know Noah?</p>
+        <div class="chips" id="roles" role="radiogroup" aria-label="Role"></div>
+        <div id="role-other-wrap" hidden>
+          <input type="text" id="role-other" maxlength="60" placeholder="Your role (e.g. Choir accompanist)" aria-label="Your role">
+        </div>
+        <div class="field" style="margin-top:16px">
+          <label for="organization">School or organization <span class="optional">(optional)</span></label>
+          <input type="text" id="organization" name="organization" maxlength="100" placeholder="e.g. Stamford American International School">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step">4</span>Choose your icon</legend>
+        <p class="hint">This appears next to your testimonial instead of a photo.</p>
+        <div class="tabs" role="tablist" aria-label="Icon style">
+          <button type="button" role="tab" id="tab-initials" aria-controls="panel-initials" aria-selected="true">Initials</button>
+          <button type="button" role="tab" id="tab-emoji" aria-controls="panel-emoji" aria-selected="false">Emoji</button>
+          <button type="button" role="tab" id="tab-icon" aria-controls="panel-icon" aria-selected="false">Icons</button>
+        </div>
+        <div role="tabpanel" id="panel-initials" aria-labelledby="tab-initials">
+          <div class="initials-panel">
+            <div class="avatar" id="initials-sample"></div>
+            <span id="initials-text">Your initials are taken from your name.</span>
+          </div>
+        </div>
+        <div role="tabpanel" id="panel-emoji" aria-labelledby="tab-emoji" hidden>
+          <div class="grid-pick" id="emoji-grid"></div>
+          <div class="custom-emoji">
+            <label for="emoji-custom">Or type your own:</label>
+            <input type="text" id="emoji-custom" maxlength="8" placeholder="🙂" aria-label="Custom emoji">
+          </div>
+        </div>
+        <div role="tabpanel" id="panel-icon" aria-labelledby="tab-icon" hidden>
+          <div class="grid-pick" id="icon-grid"></div>
+        </div>
+        <div class="palette" id="palette" aria-label="Icon color"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step">5</span>A little context <span style="font:400 14px var(--font-sans);color:var(--ink-500)">(optional, kept private)</span></legend>
+        <div class="field">
+          <label for="relationship">How and when did you work together?</label>
+          <input type="text" id="relationship" maxlength="200" placeholder="e.g. My daughter was in his Grade 3 class, 2025–26">
+        </div>
+        <div class="field">
+          <label for="email">Email, in case Noah has a question</label>
+          <input type="email" id="email" maxlength="200" autocomplete="email" placeholder="you@example.com">
+        </div>
+      </fieldset>
+
+      <div class="honeypot" aria-hidden="true">
+        <label for="website">Leave this empty</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="consent">
+        <label class="toggle"><input type="checkbox" id="consent"> I'm happy for Noah to publish this testimonial, with the name, role and icon shown in the preview, on noahdiggs.com and in job applications.</label>
+      </div>
+
+      <p class="error" id="error" role="alert" hidden style="margin-top:16px"></p>
+      <div class="submit-row" style="margin-top:20px">
+        <button class="btn" type="submit" id="submit">Submit testimonial</button>
+      </div>
+    </form>
+
+    <aside class="preview" aria-label="Preview">
+      <p class="eyebrow">Live preview</p>
+      <div class="quote-card">
+        <p class="quote placeholder" id="p-quote">Your words will appear here as you type.</p>
+        <div class="who">
+          <div class="avatar" id="p-avatar"></div>
+          <div>
+            <p class="name" id="p-name">Your name</p>
+            <p class="role" id="p-role">Your role</p>
+          </div>
+        </div>
+      </div>
+      <p class="preview-note">This is how your testimonial could look on the site. Your email and context notes are never shown.</p>
+    </aside>
+  </div>
+
+  <div class="thanks" id="thanks-view" hidden>
+    <div class="card">
+      <p class="big" aria-hidden="true">🎶</p>
+      <h2 tabindex="-1" id="thanks-title">Thank you!</h2>
+      <p>Your testimonial has been sent to Noah. It means a great deal that you took the time to share it.</p>
+      <div class="submit-row" style="justify-content:center">
+        <a class="btn" href="./index.html" style="text-decoration:none">Visit the site</a>
+        <button class="btn outline" type="button" id="another">Submit another</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>Questions? Email <a href="mailto:noahtheartsworker@gmail.com">noahtheartsworker@gmail.com</a></footer>
+
+<script>
+(function () {
+  var T = window.testimonialIcons;
+  var ROLES = ['Parent', 'Teacher', 'Colleague', 'Principal', 'Head of School', 'Administrator', 'Student', 'Former student', 'Other'];
+  var EMOJIS = ['🎵', '🎶', '🎹', '🥁', '🎻', '🎸', '🎺', '🎤', '🎼', '❤️', '🌟', '✨', '👏', '🙌', '😊', '🍎', '📚', '🎓', '🌍', '🌈', '🌻', '🦋'];
+  var COLORS = T.COLORS;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { role: '', iconType: 'initials', emoji: '🎵', icon: 'music', color: 'orange' };
+
+  // Personalized links: testimonial.html?name=Jane%20Doe&role=Parent
+  var params = new URLSearchParams(location.search);
+  if (params.get('name')) $('name').value = params.get('name').slice(0, 80);
+  if (params.get('role')) {
+    var r = params.get('role');
+    var match = ROLES.filter(function (x) { return x.toLowerCase() === r.toLowerCase(); })[0];
+    if (match) state.role = match; else { state.role = 'Other'; $('role-other').value = r.slice(0, 60); }
+  }
+
+  // Role chips
+  ROLES.forEach(function (role) {
+    var label = document.createElement('label');
+    label.className = 'chip';
+    label.innerHTML = '<input type="radio" name="role"><span></span>';
+    label.querySelector('span').textContent = role;
+    var input = label.querySelector('input');
+    input.value = role;
+    input.checked = state.role === role;
+    input.addEventListener('change', function () { state.role = role; update(); if (role === 'Other') $('role-other').focus(); });
+    $('roles').appendChild(label);
+  });
+
+  // Emoji + icon pickers
+  EMOJIS.forEach(function (e) {
+    var b = pickButton(e, 'Emoji ' + e);
+    b.textContent = e;
+    b.addEventListener('click', function () { state.emoji = e; $('emoji-custom').value = ''; update(); });
+    $('emoji-grid').appendChild(b);
+  });
+  Object.keys(T.ICONS).forEach(function (id) {
+    var b = pickButton(id, T.ICONS[id].label);
+    b.innerHTML = T.iconSvg(id, 26);
+    b.addEventListener('click', function () { state.icon = id; update(); });
+    $('icon-grid').appendChild(b);
+  });
+  COLORS.forEach(function (c) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'swatch';
+    b.dataset.value = c.id;
+    b.style.background = c.bg;
+    b.setAttribute('aria-label', c.label + ' background');
+    b.addEventListener('click', function () { state.color = c.id; update(); });
+    $('palette').appendChild(b);
+  });
+  function pickButton(value, label) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'pick';
+    b.dataset.value = value;
+    b.setAttribute('aria-label', label);
+    return b;
+  }
+
+  // Icon style tabs
+  ['initials', 'emoji', 'icon'].forEach(function (type) {
+    $('tab-' + type).addEventListener('click', function () { state.iconType = type; update(); });
+  });
+
+  ['quote', 'name', 'organization', 'role-other'].forEach(function (id) { $(id).addEventListener('input', update); });
+  $('emoji-custom').addEventListener('input', function () {
+    var v = $('emoji-custom').value.trim();
+    if (v) state.emoji = Array.from(v).slice(0, 2).join('');
+    update();
+  });
+  $('anonymous').addEventListener('change', function () {
+    if ($('anonymous').checked && state.iconType === 'initials') state.iconType = 'icon';
+    update();
+  });
+
+  function currentIcon() {
+    var anon = $('anonymous').checked;
+    if (state.iconType === 'emoji') return { type: 'emoji', value: state.emoji };
+    if (state.iconType === 'icon') return { type: 'icon', value: state.icon };
+    return { type: 'initials', value: anon ? '' : T.initialsOf($('name').value) };
+  }
+  function currentRole() {
+    return state.role === 'Other' ? $('role-other').value.trim() : state.role;
+  }
+  function paintAvatar(el, icon, size) {
+    var c = T.colorOf(state.color);
+    el.style.background = c.bg;
+    el.style.color = c.fg;
+    el.innerHTML = T.avatarHtml(icon, size);
+  }
+
+  function update() {
+    var anon = $('anonymous').checked;
+    var name = $('name').value.trim();
+    var quote = $('quote').value;
+    $('name').disabled = anon;
+    $('quote-count').textContent = quote.length + ' / 1200';
+    $('role-other-wrap').hidden = state.role !== 'Other';
+
+    $('tab-initials').disabled = anon;
+    ['initials', 'emoji', 'icon'].forEach(function (type) {
+      $('tab-' + type).setAttribute('aria-selected', String(state.iconType === type));
+      $('panel-' + type).hidden = state.iconType !== type;
+    });
+    Array.prototype.forEach.call($('emoji-grid').children, function (b) { b.setAttribute('aria-pressed', String(b.dataset.value === state.emoji)); });
+    Array.prototype.forEach.call($('icon-grid').children, function (b) { b.setAttribute('aria-pressed', String(b.dataset.value === state.icon)); });
+    Array.prototype.forEach.call($('palette').children, function (b) { b.setAttribute('aria-pressed', String(b.dataset.value === state.color)); });
+
+    var initials = T.initialsOf(name);
+    paintAvatar($('initials-sample'), { type: 'initials', value: initials });
+    $('initials-text').textContent = initials ? 'Your initials: ' + initials : 'Type your name above to see your initials.';
+
+    var icon = currentIcon();
+    paintAvatar($('p-avatar'), icon, 56);
+    var q = quote.trim();
+    $('p-quote').textContent = q ? '“' + q + '”' : 'Your words will appear here as you type.';
+    $('p-quote').classList.toggle('placeholder', !q);
+    $('p-name').textContent = anon ? 'Anonymous' : (name || 'Your name');
+    var role = currentRole();
+    var org = $('organization').value.trim();
+    $('p-role').textContent = (role || 'Your role') + (org ? ', ' + org : '');
+  }
+
+  function showError(msg) {
+    $('error').textContent = msg;
+    $('error').hidden = !msg;
+  }
+
+  $('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var anon = $('anonymous').checked;
+    var quote = $('quote').value.trim();
+    var name = $('name').value.trim();
+    var role = currentRole();
+    if (quote.length < 10) { showError('Please write a testimonial of at least a sentence.'); $('quote').focus(); return; }
+    if (!anon && !name) { showError('Please add your name, or choose to stay anonymous.'); $('name').focus(); return; }
+    if (!role) { showError(state.role === 'Other' ? 'Please describe your role.' : 'Please choose your role.'); return; }
+    if (!$('consent').checked) { showError('Please tick the box to confirm Noah may publish your testimonial.'); $('consent').focus(); return; }
+    showError('');
+
+    var icon = currentIcon();
+    icon.color = state.color;
+    var payload = {
+      quote: quote,
+      anonymous: anon,
+      name: anon ? '' : name,
+      role: role,
+      organization: $('organization').value.trim(),
+      relationship: $('relationship').value.trim(),
+      email: $('email').value.trim(),
+      icon: icon,
+      consent: true,
+      website: $('website').value
+    };
+
+    var btn = $('submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    fetch('/api/testimonials', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, data: data }; }); })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.data.error || 'Something went wrong. Please try again.');
+        $('form-view').hidden = true;
+        document.querySelector('.intro').hidden = true;
+        $('thanks-view').hidden = false;
+        window.scrollTo(0, 0);
+        $('thanks-title').focus();
+      })
+      .catch(function (err) {
+        showError((err && err.message && err.message !== 'Failed to fetch' ? err.message : 'Could not send your testimonial. Please check your connection and try again.') +
+          ' If it keeps failing, you can email it to noahtheartsworker@gmail.com.');
+      })
+      .then(function () { btn.disabled = false; btn.textContent = 'Submit testimonial'; });
+  });
+
+  $('another').addEventListener('click', function () {
+    $('form').reset();
+    state.role = '';
+    state.iconType = 'initials';
+    $('thanks-view').hidden = true;
+    document.querySelector('.intro').hidden = false;
+    $('form-view').hidden = false;
+    update();
+    $('quote').focus();
+  });
+
+  update();
+})();
+</script>
+</body>
+</html>

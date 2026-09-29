@@ -9,6 +9,7 @@
 <link rel="canonical" href="https://noahdiggs.com/">
 <script src="./support.js"></script>
 <script src="./nav.js"></script>
+<script src="./testimonial-icons.js"></script>
 </head>
 <body>
 <x-dc>
@@ -128,6 +129,22 @@
   </div>
 </section>
 
+<sc-if value="{{ hasTestimonials }}">
+<section id="testimonials" style="padding:var(--space-8) clamp(20px, 6vw, 56px)">
+  <div style="max-width:1120px;margin:0 auto">
+    <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 8px">Kind Words</p>
+    <p style="font:var(--text-body);color:var(--color-text-muted);margin:0 0 28px">From the parents, students, and colleagues I've had the joy of working with.</p>
+    <div class="testimonial-track">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <div class="testimonial-slide">
+          <x-import component="TestimonialCard" from="./ds/components/cards/TestimonialCard.jsx" quote="{{ t.quote }}" name="{{ t.name }}" role="{{ t.role }}" icon="{{ t.icon }}" hint-size="100%,260px"></x-import>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
 <section style="padding:var(--space-8) clamp(20px, 6vw, 56px);background:var(--white)">
   <div style="max-width:1120px;margin:0 auto">
     <p style="font:var(--text-h2);color:var(--color-text);margin:0 0 28px">Frequently Asked Questions</p>
@@ -169,7 +186,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { activeTab: 'classroom', openFaq: 0 };
+  state = { activeTab: 'classroom', openFaq: 0, testimonials: [] };
 
   toggleFaq(i) { this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })); }
 
@@ -213,21 +230,18 @@ class Component extends DCLogic {
     { id: 'compositions', label: 'Original Compositions' }
   ];
 
-  TESTIMONIALS = [
-    { quote: "Students lit up in every rehearsal — Noah has a rare gift for making advanced musicianship feel like play.", name: 'A. Whitfield', role: 'Parent, International School' },
-    { quote: "Noah rebuilt our entire ensemble program in a year, and gave our arts department a real artistic identity.", name: 'Priya Shah', role: 'Head of Music, ASL' },
-    { quote: "The multimedia theatre piece he directed with our MYP students was the best cross-curricular work we've produced.", name: 'Marcus Ondo', role: 'Head of Arts' },
-    { quote: "He made me feel like a real composer, not just a kid in band class.", name: 'Lian Tran', role: 'Grade 9 student' }
-  ];
-
-  testimonialTrackRef = React.createRef();
+  // Approved testimonials come from the Worker API (worker.js); the section
+  // stays hidden until at least one has been approved on testimonials-review.html.
+  componentDidMount() {
+    if (this.testimonialsRequested) return;
+    this.testimonialsRequested = true;
+    fetch('/api/testimonials/approved')
+      .then(res => (res.ok ? res.json() : { testimonials: [] }))
+      .then(data => this.setState({ testimonials: Array.isArray(data.testimonials) ? data.testimonials : [] }))
+      .catch(() => {});
+  }
 
   setTab(id) { this.setState({ activeTab: id }); }
-
-  scroll(dir) {
-    const el = this.testimonialTrackRef.current;
-    if (el) el.scrollBy({ left: dir * el.clientWidth, behavior: 'smooth' });
-  }
 
   renderVals() {
     return {
@@ -237,10 +251,8 @@ class Component extends DCLogic {
       goGallery: () => window.dcNav.navigateTo('Gallery'),
       videoCardStyle: { maxWidth: '1120px', margin: '0 auto', padding: 'clamp(20px, 5vw, 40px)' },
       videoTileStyle: { width: '100%' },
-      testimonialTrackRef: this.testimonialTrackRef,
-      testimonials: this.TESTIMONIALS.map((t, i) => ({ ...t, slotId: 'testimonial-photo-' + i })),
-      scrollPrev: () => this.scroll(-1),
-      scrollNext: () => this.scroll(1),
+      testimonials: this.state.testimonials,
+      hasTestimonials: this.state.testimonials.length > 0,
       qualifications: this.QUALIFICATIONS.map(q => ({ ...q, cardStyle: { padding: '20px' } })),
       faqs: this.FAQS.map((f, i) => ({
         ...f,
