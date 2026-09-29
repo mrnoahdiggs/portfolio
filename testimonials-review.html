@@ -47,7 +47,7 @@
 <body>
 <div class="wrap">
   <h1>Testimonial review</h1>
-  <p class="muted">Private page. Approve submissions before they're used on the site.</p>
+  <p class="muted">Private page. Approved testimonials appear in the homepage's "Kind Words" section within about 5 minutes.</p>
   <div class="share">Share this link to collect testimonials: <code id="share-link"></code> <button class="btn" type="button" id="copy-link" style="padding:6px 10px;margin-left:6px">Copy</button><br>
     Tip: add <code>?name=Jane%20Doe&amp;role=Parent</code> to pre-fill the form for a specific person.
   </div>
@@ -142,13 +142,6 @@
       .catch(function (e) { showError(e.message); });
   }
 
-  // Snippet in the shape of the TESTIMONIALS array in index.html.
-  function snippet(t) {
-    var role = t.organization ? t.role + ', ' + t.organization : t.role;
-    return '{ quote: ' + JSON.stringify(t.quote) + ', name: ' + JSON.stringify(t.anonymous ? 'Anonymous' : t.name) +
-      ', role: ' + JSON.stringify(role) + ', icon: ' + JSON.stringify(t.icon) + ' },';
-  }
-
   function render() {
     Array.prototype.forEach.call($('filters').children, function (b) {
       var f = b.dataset.value;
@@ -181,7 +174,6 @@
             (t.status !== 'approved' ? '<button class="btn teal" data-act="approved">Approve</button>' : '') +
             (t.status !== 'rejected' ? '<button class="btn" data-act="rejected">Reject</button>' : '') +
             (t.status !== 'pending' ? '<button class="btn" data-act="pending">Back to pending</button>' : '') +
-            '<button class="btn" data-act="copy">Copy snippet</button>' +
             '<button class="btn danger" data-act="delete">Delete</button>' +
           '</div>' +
         '</div>';
@@ -189,7 +181,6 @@
         b.addEventListener('click', function () {
           var act = b.dataset.act;
           if (act === 'delete') remove(t.id);
-          else if (act === 'copy') navigator.clipboard.writeText(snippet(t)).then(function () { b.textContent = 'Copied!'; setTimeout(function () { b.textContent = 'Copy snippet'; }, 1500); });
           else setStatus(t.id, act);
         });
       });

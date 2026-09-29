@@ -24,6 +24,21 @@
 .grid-5col > *,
 .grid-5col > * > * { min-width: 0; }
 
+/* Homepage testimonials: a swipeable row of cards */
+.testimonial-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* room for the cards' offset "pop" shadow */
+  padding: 4px 8px 16px 4px;
+}
+.testimonial-slide {
+  /* three cards fit the 1120px container without clipping */
+  flex: 0 0 min(340px, 85%);
+  scroll-snap-align: start;
+}
+
 @media (max-width: 900px) {
   .grid-3col,
   .grid-4col { grid-template-columns: repeat(2,1fr) !important; }

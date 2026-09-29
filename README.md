@@ -41,13 +41,16 @@ hand for an existing upload:
   (parent, teacher, principal, student, …) and choose an avatar: initials,
   an emoji, or one of the curated icons. A live preview shows how it will look.
   Add `?name=Jane%20Doe&role=Parent` to the link to pre-fill it for someone.
-- `testimonials-review.html` — private page for approving, rejecting,
-  deleting, and copying submissions. Not linked anywhere, and marked noindex.
+- `testimonials-review.html` — private page for approving, rejecting, and
+  deleting submissions. Not linked anywhere, and marked noindex.
 - `worker.js` — the small Worker API behind both pages. Submissions are
   stored in the `portfolio-testimonials` KV namespace (bound as
   `TESTIMONIALS` in `wrangler.toml`) and start as **pending**. Approved ones
-  are publicly readable at `/api/testimonials/approved`, ready to feed the
-  homepage.
+  are publicly readable at `/api/testimonials/approved`.
+- The homepage's **Kind Words** section loads that list when the page
+  opens. It only appears once at least one testimonial is approved, and
+  picks up newly approved ones within about 5 minutes (the list is cached
+  briefly).
 
 **One-time setup:** the review page needs an admin password. In the
 Cloudflare dashboard open **Workers & Pages → portfolio → Settings →
