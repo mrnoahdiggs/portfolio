@@ -4,7 +4,7 @@
 //
 // Testimonials API (stored in the TESTIMONIALS KV namespace):
 //   POST   /api/testimonials            public: submit a testimonial (saved as "pending")
-//   GET    /api/testimonials/approved   public: approved testimonials, safe to display
+//   GET    /api/testimonials/approved   public: approved testimonials, safe to display (uncached)
 //   GET    /api/testimonials            admin:  every submission, including private fields
 //   PATCH  /api/testimonials/:id        admin:  { status: "approved" | "rejected" | "pending" }
 //   DELETE /api/testimonials/:id        admin:  remove a submission
@@ -144,7 +144,8 @@ async function listApproved(env) {
       role: t.organization ? `${t.role}, ${t.organization}` : t.role,
       icon: t.icon,
     }));
-  return json({ testimonials: approved }, 200, { 'Cache-Control': 'public, max-age=300' });
+  // Not cached, so approving, rejecting, or deleting shows on the next page load.
+  return json({ testimonials: approved });
 }
 
 function checkAdmin(request, env) {

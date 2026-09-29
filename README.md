@@ -48,9 +48,9 @@ hand for an existing upload:
   `TESTIMONIALS` in `wrangler.toml`) and start as **pending**. Approved ones
   are publicly readable at `/api/testimonials/approved`.
 - The homepage's **Kind Words** section loads that list when the page
-  opens. It only appears once at least one testimonial is approved, and
-  picks up newly approved ones within about 5 minutes (the list is cached
-  briefly).
+  opens. It only appears once at least one testimonial is approved.
+  Approving, rejecting, or deleting shows up on the next page load (Cloudflare
+  KV can occasionally take up to a minute to catch up).
 
 **One-time setup:** the review page needs an admin password. In the
 Cloudflare dashboard open **Workers & Pages → portfolio → Settings →

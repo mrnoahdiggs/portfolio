@@ -235,7 +235,7 @@ class Component extends DCLogic {
   componentDidMount() {
     if (this.testimonialsRequested) return;
     this.testimonialsRequested = true;
-    fetch('/api/testimonials/approved')
+    fetch('/api/testimonials/approved', { cache: 'no-store' })
       .then(res => (res.ok ? res.json() : { testimonials: [] }))
       .then(data => this.setState({ testimonials: Array.isArray(data.testimonials) ? data.testimonials : [] }))
       .catch(() => {});
