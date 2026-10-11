@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Resources | Noah Diggs</title>
+<meta name="description" content="Free scores and resources for music teachers and student ensembles, shared by Noah Diggs.">
+<link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+<link rel="canonical" href="https://noahdiggs.com/free.html">
+<script src="./support.js"></script>
+<script src="./nav.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="stylesheet" href="ds/styles.css">
+<style>body{margin:0;background:var(--color-bg);font-family:var(--font-sans)}a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}</style>
+</helmet>
+
+<x-import component="NavBar" from="./ds/components/navigation/NavBar.jsx" links="{{ navLinks }}" active="Free" logoSrc="brand/ngjd-logo.svg" onSelect="{{ window.dcNav.navigateTo }}" hint-size="100%,88px"></x-import>
+
+<main>
+
+<div style="padding:clamp(20px, 6vw, 56px) clamp(20px, 6vw, 56px) 40px;background:var(--white);text-align:center;border-bottom:2px solid var(--ink-200)">
+  <p style="font:var(--text-label);letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);margin:0 0 14px">Free Resources</p>
+  <p style="font:var(--text-h1);color:var(--color-text);margin:0 0 12px">Free for Your Classroom</p>
+  <p style="font:var(--text-body-lg);color:var(--color-text-muted);max-width:620px;margin:0 auto">Scores and materials for music teachers and student ensembles, free to play, print, and share.</p>
+</div>
+
+<!-- Resources, newest first. To add one, copy an <article> block and paste it above the others. -->
+<section style="padding:clamp(32px, 6vw, 64px) clamp(16px, 5vw, 56px) var(--space-9);display:flex;flex-direction:column;gap:48px">
+
+  <article id="summer-hisaishi" style="max-width:880px;width:100%;margin:0 auto;background:var(--color-surface);border:2px solid var(--ink-900);border-radius:var(--radius-lg);box-shadow:var(--shadow-pop);padding:clamp(20px, 4vw, 40px);box-sizing:border-box">
+
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 18px">
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="primary" hint-size="auto,24px">Free score</x-import>
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="accent" hint-size="auto,24px">Chamber ensemble</x-import>
+    </div>
+
+    <h1 style="font:var(--text-h2);color:var(--color-text);margin:0 0 6px">Summer</h1>
+    <p style="font:italic 400 19px/1.5 var(--font-serif);color:var(--orange-700);margin:0 0 20px">Joe Hisaishi (久石譲)</p>
+
+    <p style="font:var(--text-label);letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-muted);margin:0 0 10px">Arranged for</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px">
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="neutral" hint-size="auto,24px">Flute</x-import>
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="neutral" hint-size="auto,24px">Piano</x-import>
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="neutral" hint-size="auto,24px">Violin 1</x-import>
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="neutral" hint-size="auto,24px">Violin 2</x-import>
+      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="neutral" hint-size="auto,24px">Cello</x-import>
+    </div>
+
+    <div style="border:2px solid var(--ink-900);border-radius:var(--radius-md);overflow:hidden;background:var(--white)">
+      <iframe id="score-iframe" title="Summer by Joe Hisaishi, arranged for flute, piano, two violins and cello (MuseScore score viewer)" src="https://musescore.com/user/40742574/scores/39001553/embed" width="100%" height="394" loading="lazy" allow="autoplay; fullscreen" allowFullScreen style="display:block;width:100%;height:clamp(394px, 60vw, 560px);border:0"></iframe>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;margin:18px 0 0">
+      <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><a href="https://musescore.com/user/40742574/scores/39001553/s/OKdcxj" target="_blank" rel="noopener">Summer – Joe Hisaishi (久石譲)</a> by <a href="https://musescore.com/user/40742574" target="_blank" rel="noopener">wholeproducer</a></p>
+      <a href="https://musescore.com/user/40742574/scores/39001553/s/OKdcxj" target="_blank" rel="noopener" style="font:600 15px/1 var(--font-sans);color:var(--color-text);text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;min-height:44px;box-sizing:border-box;background:var(--color-surface);border:2px solid var(--ink-900);border-radius:var(--radius-md);box-shadow:var(--shadow-pop-sm)">Open on MuseScore <span aria-hidden="true">↗</span></a>
+    </div>
+  </article>
+
+</section>
+
+<footer style="border-top:2px solid var(--ink-900);padding:var(--space-6) clamp(20px, 6vw, 56px);background:var(--white)">
+  <div style="max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><a href="https://www.linkedin.com/in/noahdiggs/" target="_blank" rel="noopener">LinkedIn</a> · noahtheartsworker@gmail.com</p>
+    <img src="brand/ngjd-logo.svg" style="height:56px;width:auto;flex:none" alt="Noah Gabriel Juliana Diggs monogram">
+    <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><a href="about.html">About</a> · <a href="gallery.html">Gallery</a> · <a href="mun.html">MUN</a> · <a href="free.html">Free</a> · <a href="contact.html">Contact</a></p>
+  </div>
+</footer>
+
+</main>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      navLinks: ['Home', 'About', 'Gallery', 'MUN', 'Free', 'Contact', 'LinkedIn'],
+      window: window
+    };
+  }
+}
+
+</script>
+</body>
+</html>
