@@ -29,13 +29,12 @@
 </div>
 
 <!-- Journal entries, newest first. To add one, copy an <article> block and paste it above the others. -->
-<section style="padding:clamp(32px, 6vw, 64px) clamp(16px, 5vw, 56px) var(--space-8);display:flex;flex-direction:column;gap:48px">
+<section style="padding:clamp(32px, 6vw, 64px) clamp(16px, 5vw, 56px) var(--space-9);display:flex;flex-direction:column;gap:48px">
 
   <article id="2026-10-10" style="max-width:760px;width:100%;margin:0 auto;background:var(--color-surface);border:2px solid var(--ink-900);border-radius:var(--radius-lg);box-shadow:var(--shadow-pop);padding:clamp(24px, 5vw, 56px);box-sizing:border-box">
 
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 20px">
       <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="primary" hint-size="auto,24px">10 October 2026</x-import>
-      <x-import component="Badge" from="./ds/components/feedback/Badge.jsx" tone="accent" hint-size="auto,24px">UNODC · Mandarin</x-import>
     </div>
 
     <h1 style="font:var(--text-h2);color:var(--color-text);margin:0 0 18px">The Language of the Room</h1>
@@ -99,15 +98,6 @@
 
 </section>
 
-<section style="padding:0 clamp(20px, 6vw, 56px) var(--space-9)">
-  <x-import component="Card" from="./ds/components/cards/Card.jsx" style="{{ ctaCardStyle }}" hint-size="auto,auto">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
-      <p style="font:var(--text-h3);color:var(--color-text);margin:0;max-width:560px">Looking to elevate your music department? Let's bring student creativity to center stage.</p>
-      <x-import component="Button" from="./ds/components/buttons/Button.jsx" variant="primary" size="lg" onClick="{{ goContact }}" hint-size="auto,54px">Download CV</x-import>
-    </div>
-  </x-import>
-</section>
-
 <footer style="border-top:2px solid var(--ink-900);padding:var(--space-6) clamp(20px, 6vw, 56px);background:var(--white)">
   <div style="max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
     <p style="font:var(--text-small);color:var(--color-text-muted);margin:0"><a href="https://www.linkedin.com/in/noahdiggs/" target="_blank" rel="noopener">LinkedIn</a> · noahtheartsworker@gmail.com</p>
@@ -124,9 +114,7 @@ class Component extends DCLogic {
   renderVals() {
     return {
       navLinks: ['Home', 'About', 'Gallery', 'MUN', 'Contact', 'LinkedIn'],
-      window: window,
-      goContact: () => window.dcNav.navigateTo('Contact'),
-      ctaCardStyle: { maxWidth: '1120px', margin: '0 auto' }
+      window: window
     };
   }
 }
