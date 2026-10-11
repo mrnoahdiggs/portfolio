@@ -6,6 +6,7 @@ no build step required.
 - `index.html` — main landing page
 - `testimonial.html`, `testimonials-review.html`, `worker.js` — testimonial collection (see below)
 - `about.html`, `gallery.html`, `contact.html`, `brand-sheet.html` — additional pages
+- `free.html` — Free Resources (embedded scores; copy an `<article>` block to add one)
 - `mun.html` — MUN Journal (blog-style entries, newest first; copy an `<article>` block to add one)
 - `ds/` — design system (styles, tokens, components)
 - `brand/` — logo assets
