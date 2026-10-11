@@ -1,4 +1,4 @@
-// Shared cross-page navigation for the dc-runtime pages (index/about/gallery/contact).
+// Shared cross-page navigation for the dc-runtime pages (index/about/gallery/mun/contact).
 // Exposed on window so it can be referenced from templates as {{ window.dcNav.navigateTo }}.
 (function () {
   var ROUTES = {
@@ -6,8 +6,7 @@
     About: './about.html',
     Gallery: './gallery.html',
     Contact: './contact.html',
-    // No dedicated MUN section exists yet; route to home until one is built.
-    MUN: './index.html',
+    MUN: './mun.html',
     LinkedIn: 'https://www.linkedin.com/in/noahdiggs/',
   };
 
