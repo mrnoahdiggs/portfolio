@@ -74,7 +74,7 @@ class Component extends DCLogic {
 
   renderVals() {
     return {
-      navLinks: ['Home', 'About', 'Gallery', 'MUN', 'Free', 'Contact', 'LinkedIn'],
+      navLinks: ['Home', 'About', 'Gallery', 'MUN', 'Free', 'Contact'],
       window: window,
       goContact: () => window.dcNav.navigateTo('Contact'),
       clips: this.CLIPS.map(c => ({ ...c, cardStyle: { width: '100%', maxWidth: '400px', margin: '0 auto' } })),
