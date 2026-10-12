@@ -99,6 +99,7 @@ html { scroll-padding-top: 104px; }
    containing block at one viewport. Let them grow with the page instead. */
 html body #dc-root, html body #dc-root > .sc-host { height: auto; }
 html body #dc-root { min-height: 100%; }
+.site-nav { transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
 .nav-drawer { display: none; }
 
@@ -137,5 +138,5 @@ html body #dc-root { min-height: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-drawer-backdrop, .nav-drawer-panel { transition: none !important; }
+  .site-nav, .nav-drawer-backdrop, .nav-drawer-panel { transition: none !important; }
 }

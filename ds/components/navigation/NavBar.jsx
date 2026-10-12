@@ -4,6 +4,31 @@ function NavBar({ links = [], active, brand = 'Noah Diggs', logoSrc, onSelect })
   const toggleRef = React.useRef(null);
   const closeRef = React.useRef(null);
 
+  const [hidden, setHidden] = React.useState(false);
+  const navRef = React.useRef(null);
+
+  // Slide the sticky bar away while scrolling down and bring it back on any
+  // scroll up. Small jitters are ignored, and it always shows near the top.
+  React.useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const y = window.scrollY;
+      const navH = navRef.current ? navRef.current.offsetHeight : 0;
+      if (y <= navH) setHidden(false);
+      else if (y - lastY > 6) setHidden(true);
+      else if (lastY - y > 6) setHidden(false);
+      else return;
+      lastY = y;
+    };
+    const onScroll = () => {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const select = (label) => {
     setOpen(false);
     onSelect && onSelect(label);
@@ -44,8 +69,11 @@ function NavBar({ links = [], active, brand = 'Noah Diggs', logoSrc, onSelect })
   const bar = { display: 'block', width: '22px', height: '2px', background: 'var(--ink-900)', borderRadius: '2px' };
 
   return (
-    <nav style={{
+    <nav ref={navRef} className="site-nav" onFocus={() => setHidden(false)} style={{
       position: 'sticky', top: 0, zIndex: 100,
+      // 'none' (not translateY(0)) when shown: any transform would become the
+      // containing block for the fixed-position drawer below.
+      transform: hidden && !open ? 'translateY(calc(-100% - 4px))' : 'none',
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       flexWrap: 'wrap', rowGap: '10px', columnGap: '16px',
       padding: 'clamp(12px, 4vw, 20px) clamp(16px, 5vw, 40px)', background: 'var(--color-bg)', borderBottom: '2px solid var(--ink-900)',
