@@ -93,6 +93,13 @@
 
 
 /* ---------- Nav bar: hamburger menu + slide-in drawer on small screens ---------- */
+/* The nav is sticky, so keep in-page anchor jumps from landing under it. */
+html { scroll-padding-top: 104px; }
+/* dc-runtime pins #dc-root/.sc-host to height:100%, which caps the sticky nav's
+   containing block at one viewport. Let them grow with the page instead. */
+html body #dc-root, html body #dc-root > .sc-host { height: auto; }
+html body #dc-root { min-height: 100%; }
+
 .nav-drawer { display: none; }
 
 @media (max-width: 820px) {

@@ -45,6 +45,7 @@ function NavBar({ links = [], active, brand = 'Noah Diggs', logoSrc, onSelect })
 
   return (
     <nav style={{
+      position: 'sticky', top: 0, zIndex: 100,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       flexWrap: 'wrap', rowGap: '10px', columnGap: '16px',
       padding: 'clamp(12px, 4vw, 20px) clamp(16px, 5vw, 40px)', background: 'var(--color-bg)', borderBottom: '2px solid var(--ink-900)',
