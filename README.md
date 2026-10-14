@@ -8,9 +8,7 @@ no build step required.
 - `about.html`, `gallery.html`, `contact.html`, `brand-sheet.html` — additional pages
 - `free.html` — Free Resources (embedded scores; copy an `<article>` block to add one)
 - `mun.html` — MUN Journal (blog-style entries, newest first; copy an `<article>` block to add one)
-- `qr.html` — link-in-bio page at `noahdiggs.com/qr` (plain HTML/CSS for speed; not in the nav).
-  `brand/qr-code.svg` / `brand/qr-code.png` are a QR code pointing to it, with the favicon in the middle
-  (error-correction level H, so the logo doesn't stop it scanning)
+- `qr.html` — link-in-bio page at `noahdiggs.com/qr` (plain HTML/CSS for speed; not in the nav)
 - `ds/` — design system (styles, tokens, components)
 - `brand/` — logo assets
 - `support.js`, `image-slot.js` — page runtime (loads React/Babel from a CDN at

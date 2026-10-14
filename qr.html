@@ -52,13 +52,6 @@
   footer{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--ink-600);font-size:13px}
   footer img{height:44px;width:auto}
   footer a{color:var(--ink-600)}
-  .share{display:none}
-  /* On a computer, offer the QR code so visitors can open this page on their phone */
-  @media (min-width:700px) and (hover:hover){
-    .share{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:36px;text-align:center;color:var(--ink-600);font-size:14px}
-    .share img{width:160px;height:160px;border:2px solid var(--ink-900);border-radius:14px;box-shadow:4px 4px 0 var(--ink-900);background:var(--white)}
-    .share a{color:var(--ink-600)}
-  }
   @media (prefers-reduced-motion:reduce){.btn{transition:none}}
 </style>
 </head>
@@ -104,11 +97,6 @@
       <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></span>
       <span class="label">References &amp; candidate profiles</span><span class="arrow">→</span></a></li>
   </ul>
-
-  <div class="share">
-    <img src="brand/qr-code.svg" alt="QR code linking to noahdiggs.com/qr" width="160" height="160">
-    <span>Scan to open on your phone · <a href="brand/qr-code.png" download="noah-diggs-qr.png">Download QR</a></span>
-  </div>
 
   <footer>
     <img src="brand/ngjd-logo.svg" alt="Noah Gabriel Juliano Diggs monogram">
