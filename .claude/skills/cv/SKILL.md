@@ -19,7 +19,7 @@ cv/
                                          each source holds all its markup and CSS (no build step, no external requests);
                                          each PDF is committed: re-export after every change
   qr-code.png           QR code (900×900, cropped from Noah's branded original, quiet zone kept)
-  fonts/*.woff2         self-hosted fonts (Lora, Lora italic, Source Sans 3, Source Sans 3 italic)
+  fonts/*.woff2         self-hosted static fonts: Lora 400/600/700/400-italic, Source Sans 3 400/600/700/400-italic
 .claude/skills/cv/scripts/
   render.js             exports the PDF and reports spare room per column; optional PNG previews
   contrast.py           contrast ratio of every colour token on white and on the side panel
@@ -114,8 +114,24 @@ The sans and the text colours were changed for print.
 The website's **Work Sans** (thin, wide, made for screens) and **Space Mono** (tiny tracked
 monospace capitals are the least legible thing on paper) were deliberately dropped. Don't
 bring them back. Fonts are self-hosted woff2 files (Google Fonts "latin" subset) so the PDF
-renders the same offline. To add a weight or style, fetch the CSS from Google Fonts with a desktop
-browser User-Agent and download the `U+0000-00FF` file.
+renders the same offline.
+
+**Only static (single-weight) files, never variable fonts.** Chrome embeds variable fonts as
+**Type 3**, which print shops' preflight checks can reject and older printers can render softly.
+Static files embed as standard TrueType: `pdffonts` must show `CID TrueType` for every font. Each
+weight/style has its own file and its own `@font-face` with a single `font-weight`. Google Fonts
+serves these families as variable fonts only, so to add a weight, download the variable `U+0000-00FF`
+file (fetch the CSS with a desktop browser User-Agent), then make a static instance:
+```python
+# pip install fonttools brotli
+from fontTools.ttLib import TTFont
+from fontTools.varLib import instancer
+f = instancer.instantiateVariableFont(TTFont('var.woff2'), {'wght': 500}, updateFontNames=True)
+f.flavor = 'woff2'; f.save('sourcesans3-500.woff2')
+```
+Then fix the `name` table: name IDs 1/2/4/6 must read like `Source Sans 3` / `Medium` /
+`SourceSans3-Medium`. Source Sans 3's STAT data otherwise labels every instance "ExtraLight",
+and that name shows up in the PDF.
 
 ### Type scale (minimums matter more than exact values)
 
@@ -150,6 +166,17 @@ Rules:
 - Hold every text colour to **≥ 6:1 on the cream panel** (`contrast.py` flags anything lower). That leaves headroom for cheap lasers, toner dithering and black-and-white copies; the burnt orange and dark teal both become dark grey in B&W.
 - Don't use light greys for "muted" text; small grey type speckles on laser printers. `--muted` is a dark brown on purpose.
 - `print-color-adjust: exact` is set so the panel tint and accent rule print.
+
+### Print safety
+
+- **Nothing coloured or ruled within 5 mm of the page edge.** Office printers can't print the
+  outer 3–5 mm, which would leave a white strip on the panel and header bar. So `header`,
+  `.runhead` and `footer` have `margin: 0 5mm` with 8 mm side padding, and `aside` has
+  `margin-right: 5mm` with 3 mm right padding. The text sits where 13 mm / 8 mm padding would put
+  it. Keep that pairing (padding plus 5 mm margin equals the original) if you change it.
+  To check: render at 100 dpi and confirm the outer 4.8 mm of each page is pure white.
+- Tell Noah to print at **Actual size / 100%** on **A4**, on matte 100–120 gsm paper (gloss glares on
+  the QR code), double-sided or stapled.
 
 ### QR code
 
