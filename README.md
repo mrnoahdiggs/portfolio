@@ -10,7 +10,7 @@ no build step required.
 - `mun.html` — MUN Journal (blog-style entries, newest first; copy an `<article>` block to add one)
 - `ds/` — design system (styles, tokens, components)
 - `brand/` — logo assets
-- `cv/` — printable 2-page A4 CV (`index.html` is the source; `Noah-Diggs-CV.pdf` is the print-ready export, QR code on page 1)
+- `cv/` — printable 2-page A4 CV (`index.html` is the source; `Noah-Diggs-CV.pdf` is the print-ready export, QR code on page 1). How it works: `.claude/skills/cv/SKILL.md`
 - `support.js`, `image-slot.js` — page runtime (loads React/Babel from a CDN at
   runtime and renders the page's components; also restores photos from
   `.image-slots.state.json`)
