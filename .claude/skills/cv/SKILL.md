@@ -40,7 +40,7 @@ cv/
 4. If you added glyphs outside basic Latin, run `pdffonts cv/<name>.pdf`. Every font
    must be Lora or SourceSans3. A `Liberation*` or `DejaVu*` entry means a character fell
    back (this happened with `→`; see Gotchas).
-5. If you changed a colour, run `python3 .claude/skills/cv/scripts/contrast.py`.
+5. If you changed a colour, run `python3 .claude/skills/cv/scripts/contrast.py cv/<file>.html`.
 6. Commit the HTML **and** its PDF together. Re-rendering always rewrites the PDF's timestamp,
    so `git checkout` any PDF whose HTML didn't change.
 
@@ -84,7 +84,7 @@ Each tailored CV is its own HTML file in `cv/`, sharing `fonts/` and `qr-code.pn
 |---|---|---|
 | `index.html` | K-12 / cross-divisional roles | Full CV: summary, philosophy + quote, nationality/DOB/work-rights line, MUN in detail |
 | `lower-school-music.html` | Lower School / elementary music roles | From Noah's "Lower School Music Draft 1". No facts line or philosophy. KPO's concurrent deployments are nested `.sub` blocks. Less text than the full CV, so `roomy` opens the spacing on page 1 and page 2's side panel (page 2's main column is full at standard spacing) |
-| `strings-orchestra.html` | Strings, orchestra and ensemble roles | From Noah's "Strings Orchestra Draft 1". Stamford's ensemble work leads, with an italic `.intro` line; MUN is cut down to "Additional School Contributions". Page 1's main column is full, so `roomy` goes only on page 1's `aside` and on all of page 2. **Teal accent** instead of orange |
+| `strings-orchestra.html` | Strings, orchestra and ensemble roles | From Noah's "Strings Orchestra Draft 1". Stamford's ensemble work leads, with an italic `.intro` line; MUN is cut down to "Additional School Contributions". Page 1's main column is full, so `roomy` goes only on page 1's `aside` and on all of page 2. **Teal accent** instead of orange, with a light teal panel (`--side` #EAF6F6) and teal hairlines (`--rule` #9BD6D9) |
 
 To make a new version: copy the closest file, change `<title>` and `<meta name="pdf-filename">`,
 replace the body content, and keep the `<style>` block unless the change is specific to that
