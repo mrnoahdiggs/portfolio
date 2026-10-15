@@ -18,8 +18,8 @@
     --muted: #4B3E31;
     --rule: #C7BBA9;
     --side: #FBF6EF;
-    --orange: #E85C00;      /* decorative only: bars, bullets */
-    --orange-text: #9A3800; /* orange for text, 6.6:1 on cream */
+    --accent: #227D83;      /* decorative only: bars, bullets (teal in this version) */
+    --accent-text: #175A60; /* teal for text, 7.3:1 on cream */
     --teal: #12454A;        /* 9.9:1 on cream */
     --serif: 'Lora', Georgia, serif;
     --sans: 'Source Sans 3', Arial, sans-serif;
@@ -44,14 +44,14 @@
   /* ---------- header (page 1) ---------- */
   header {
     grid-column: 1 / -1; display: grid; grid-template-columns: 1fr auto; gap: 8mm;
-    padding: 11mm 13mm 6mm; border-bottom: 1.2mm solid var(--orange);
+    padding: 11mm 13mm 6mm; border-bottom: 1.2mm solid var(--accent);
   }
-  .eyebrow { font: 700 8.5pt/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--orange-text); }
+  .eyebrow { font: 700 8.5pt/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); }
   h1 { font: 600 25pt/1.05 var(--serif); letter-spacing: -.01em; margin: 2.2mm 0 2.6mm; }
   h1 span { display: block; }
   .contact { font-size: 9.4pt; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: .6mm 3.2mm; }
   .contact a, .contact span { white-space: nowrap; }
-  .contact .sep { color: var(--orange); }
+  .contact .sep { color: var(--accent); }
   .facts { margin-top: 1.6mm; font-size: 8.6pt; color: var(--muted); }
   .facts b { font-weight: 600; color: var(--ink-2); }
 
@@ -87,7 +87,7 @@
 
   blockquote {
     font: italic 400 10.4pt/1.35 var(--serif); color: var(--ink);
-    border-left: .8mm solid var(--orange); padding: .4mm 0 .4mm 3mm; margin: .6mm 0 2.4mm;
+    border-left: .8mm solid var(--accent); padding: .4mm 0 .4mm 3mm; margin: .6mm 0 2.4mm;
   }
   blockquote cite { display: block; font: 400 8.4pt/1.3 var(--sans); color: var(--muted); margin-top: .8mm; font-style: normal; }
 
@@ -98,12 +98,12 @@
   .org-desc { font-size: 8.6pt; color: var(--muted); }
   .role { display: flex; justify-content: space-between; gap: 3mm; margin-top: 1.8mm; align-items: baseline; }
   .role-title { font-weight: 700; font-size: 9.8pt; }
-  .dates { font: 600 8.6pt/1 var(--sans); color: var(--orange-text); white-space: nowrap; }
+  .dates { font: 600 8.6pt/1 var(--sans); color: var(--accent-text); white-space: nowrap; }
   .role + .role { margin-top: .6mm; }
 
   ul { list-style: none; margin-top: 1.2mm; }
   li { position: relative; padding-left: 3.2mm; margin-bottom: 1mm; }
-  li::before { content: ""; position: absolute; left: 0; top: 1.45mm; width: 1.2mm; height: 1.2mm; border-radius: 50%; background: var(--orange); }
+  li::before { content: ""; position: absolute; left: 0; top: 1.45mm; width: 1.2mm; height: 1.2mm; border-radius: 50%; background: var(--accent); }
   li b { font-weight: 600; }
 
   /* sidebar items */
@@ -111,11 +111,11 @@
   .item-title { font-weight: 700; font-size: 9.2pt; line-height: 1.3; }
   .item-meta { font-size: 8.6pt; color: var(--muted); line-height: 1.35; }
   .skill { margin-bottom: 2.3mm; font-size: 8.8pt; line-height: 1.38; }
-  .skill dt { font: 700 8pt/1.3 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--orange-text); margin-bottom: .4mm; }
+  .skill dt { font: 700 8pt/1.3 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); margin-bottom: .4mm; }
 
   .stats { display: grid; gap: 3.4mm; }
   .stat { display: grid; grid-template-columns: 21mm 1fr; align-items: baseline; gap: 1.6mm; }
-  .stat b { font: 700 13pt/1 var(--serif); color: var(--orange-text); }
+  .stat b { font: 700 13pt/1 var(--serif); color: var(--accent-text); }
   .stat .to { width: 2.4mm; height: 2mm; margin: 0 .5mm; vertical-align: .3mm; }
   .stat span { font-size: 8.6pt; line-height: 1.3; color: var(--ink-2); }
 
@@ -226,7 +226,7 @@
       <div class="stats">
         <div class="stat"><b>7</b><span>years of music teaching</span></div>
         <div class="stat"><b>~60</b><span>individual cello pupils, early years to Grade 8</span></div>
-        <div class="stat"><b>40</b><span>players at most in the co-directed high-school string ensemble</span></div>
+        <div class="stat"><b>40</b><span>players at most, high-school string ensemble</span></div>
         <div class="stat"><b>100%</b><span>exam pass rate, 50 cello &amp; theory pupils</span></div>
         <div class="stat"><b>~5</b><span>large-scale youth concerts produced</span></div>
       </div>
@@ -264,8 +264,8 @@
 
         <div class="sub">
           <div class="role"><span class="role-title">School deployment: Stamford Music Academy, SAIS</span><span class="dates">Jul 2022 – Jul 2023</span></div>
-          <div class="org-desc">Part-time Strings Instructor, concurrent with KPO appointment</div>
-          <p class="note">Taught Grades 4–5 pupils in choir and string orchestra.</p>
+          <div class="org-desc">Part-time Cello Instructor, concurrent with KPO appointment</div>
+          <p class="note">Taught private cello lessons to pupils from KG1 to Grade 3.</p>
         </div>
       </div>
     </section>
@@ -287,7 +287,7 @@
       <h2>Performance &amp; Composition</h2>
       <ul>
         <li><b>Cellist:</b> Performed with the Philadelphia Youth Orchestra and Yong Siew Toh Conservatory of Music Orchestra Institute, with performance experience at Carnegie Hall, Victoria Concert Hall and Esplanade Concert Hall.</li>
-        <li><b>Composer and arranger:</b> Works performed by Ensemble Handwerk, musicians of the Philadelphia Orchestra and Harrow School, London.</li>
+        <li><b>Composer and arranger:</b> Works performed by Ensemble Handwerk, musicians of the Philadelphia Orchestra, Harrow School (London) and cellist Mirjam Ingolfsson. Composition and presentation credits include the Darmstadt Summer Course, The Walden School Young Musicians Program and the annual ASCAP Foundation Awards.</li>
       </ul>
     </section>
   </main>

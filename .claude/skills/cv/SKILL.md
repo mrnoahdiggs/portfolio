@@ -55,7 +55,7 @@ panel), three rows (header / body / footer).
 
 | Page | Top row | `main` (left, white) | `aside` (right, cream panel) |
 |---|---|---|---|
-| 1 | `header`: eyebrow, name (`h1`), contact rows, facts line, **QR code** at right; 1.2 mm orange rule beneath | Professional Summary · Teaching Philosophy (quote + paragraph) · Teaching Experience: Stamford Elementary Music Teacher | Certification & Qualifications · At a Glance (stats) |
+| 1 | `header`: eyebrow, name (`h1`), contact rows, facts line, **QR code** at right; 1.2 mm accent-colour rule beneath | Professional Summary · Teaching Philosophy (quote + paragraph) · Teaching Experience: Stamford Elementary Music Teacher | Certification & Qualifications · At a Glance (stats) |
 | 2 | `.runhead`: name + email/phone/site on one line | Teaching Experience (cont.): Stamford MUN roles · Kids' Philharmonic · Performance, Composition & Production | Recent Professional Development · Skills |
 
 Both pages end with a `footer` ("NOAH DIGGS — CURRICULUM VITAE" · page number).
@@ -70,7 +70,7 @@ the minimums below.
 - **Section**: `<section><h2>Title</h2>…</section>`. In `main`, h2 gets a hairline extending to the right.
 - **Employer**: `.org` > `.org-name` (serif) + optional `.org-desc` (one muted line).
 - **Role row**: `.role` > `.role-title` + `.dates`. Flex, with dates right-aligned. Stack two `.role` rows for concurrent titles.
-- **Bullets**: `ul > li`, starting with `<b>Label:</b>`. Bullets are 1.2 mm orange dots drawn in CSS.
+- **Bullets**: `ul > li`, starting with `<b>Label:</b>`. Bullets are 1.2 mm accent-colour dots drawn in CSS.
 - **Side-panel entry**: `.item` > `.item-title` + `.item-meta` (use `<br>` for institution / dates / hours).
 - **Skill**: `.skill` > `dt` (small caps label) + `dd`, inside a `dl`.
 - **Stat**: `.stat` > `b` (number, serif) + `span` (caption). Use the inline SVG `.to` arrow for ranges, never `→`.
@@ -84,7 +84,7 @@ Each tailored CV is its own HTML file in `cv/`, sharing `fonts/` and `qr-code.pn
 |---|---|---|
 | `index.html` | K-12 / cross-divisional roles | Full CV: summary, philosophy + quote, nationality/DOB/work-rights line, MUN in detail |
 | `lower-school-music.html` | Lower School / elementary music roles | From Noah's "Lower School Music Draft 1". No facts line or philosophy. KPO's concurrent deployments are nested `.sub` blocks. Less text than the full CV, so `roomy` opens the spacing on page 1 and page 2's side panel (page 2's main column is full at standard spacing) |
-| `strings-orchestra.html` | Strings, orchestra and ensemble roles | From Noah's "Strings Orchestra Draft 1". Stamford's ensemble work leads, with an italic `.intro` line; MUN is cut down to "Additional School Contributions". Page 1's main column is full, so `roomy` goes only on page 1's `aside` and on all of page 2 |
+| `strings-orchestra.html` | Strings, orchestra and ensemble roles | From Noah's "Strings Orchestra Draft 1". Stamford's ensemble work leads, with an italic `.intro` line; MUN is cut down to "Additional School Contributions". Page 1's main column is full, so `roomy` goes only on page 1's `aside` and on all of page 2. **Teal accent** instead of orange |
 
 To make a new version: copy the closest file, change `<title>` and `<meta name="pdf-filename">`,
 replace the body content, and keep the `<style>` block unless the change is specific to that
@@ -137,16 +137,17 @@ browser User-Agent and download the `U+0000-00FF` file.
 | `--ink-2` | #362B21 | contact line, stat captions | 12.8:1 |
 | `--muted` | #4B3E31 | secondary text: org desc, item meta, cite, footer | 9.6:1 |
 | `--teal` | #12454A | section headings, QR caption | 9.9:1 |
-| `--orange-text` | #9A3800 | **orange text**: dates, eyebrow, skill labels, stat numbers | 6.6:1 |
-| `--orange` | #E85C00 | **decoration only**: header rule, bullets, quote bar, contact separators | 3.3:1 ✗ |
+| `--accent-text` | #9A3800 | **accent text**: dates, eyebrow, skill labels, stat numbers | 6.6:1 |
+| `--accent` | #E85C00 | **decoration only**: header rule, bullets, quote bar, contact separators | 3.3:1 ✗ |
 | `--side` | #FBF6EF | side-panel background | — |
 | `--rule` | #C7BBA9 | hairlines and borders | — |
 
 Rules:
-- **Never set text in `--orange`.** At 3.3:1 it fails even screen guidelines and turns to pale grey in print. Use `--orange-text`.
+- **Never set text in `--accent`.** In orange it's 3.3:1, which fails even screen guidelines and turns to pale grey in print. Use `--accent-text`.
+- **Accent colour per version.** The highlights come only from `--accent` / `--accent-text`, so recolouring a version means changing those two values. The default is orange (#E85C00 / #9A3800). `strings-orchestra.html` uses teal: #227D83 for decoration and #175A60 for text (7.3:1). Keep `--teal` (#12454A) for section headings in every version. For any new accent, pick the text shade with `contrast.py` (≥ 6:1 on the panel).
 - Hold every text colour to **≥ 6:1 on the cream panel** (`contrast.py` flags anything lower). That leaves headroom for cheap lasers, toner dithering and black-and-white copies; the burnt orange and dark teal both become dark grey in B&W.
 - Don't use light greys for "muted" text; small grey type speckles on laser printers. `--muted` is a dark brown on purpose.
-- `print-color-adjust: exact` is set so the panel tint and orange rule print.
+- `print-color-adjust: exact` is set so the panel tint and accent rule print.
 
 ### QR code
 
