@@ -1,6 +1,6 @@
 ---
 name: cv
-description: How Noah Diggs' printable 2-page A4 CV (cv/index.html → cv/Noah-Diggs-CV.pdf) is built, styled and checked. Use whenever editing the CV's content, layout, fonts, colours or QR code, re-exporting the PDF, or making a variant of it (a one-page version, a tailored CV for a specific school, a cover letter in the same style).
+description: How Noah Diggs' printable 2-page A4 CVs (cv/*.html → cv/*.pdf) are built, styled and checked. Use whenever editing the CV's content, layout, fonts, colours or QR code, re-exporting the PDF, or making a variant of it (a one-page version, a tailored CV for a specific school, a cover letter in the same style).
 ---
 
 # Printable CV
@@ -12,8 +12,10 @@ across a table.
 
 ```
 cv/
-  index.html            source: all markup and CSS in one file (no build step, no external requests)
-  Noah-Diggs-CV.pdf     print-ready export, committed: re-export after every change
+  index.html                             full CV (K-12)          → Noah-Diggs-CV.pdf
+  lower-school-music.html                Lower School Music CV   → Noah-Diggs-CV-Lower-School-Music.pdf
+                                         each source holds all its markup and CSS (no build step, no external requests);
+                                         each PDF is committed: re-export after every change
   qr-code.png           QR code (900×900, cropped from Noah's branded original, quiet zone kept)
   fonts/*.woff2         self-hosted fonts (Lora, Lora italic, Source Sans 3, Source Sans 3 italic)
 .claude/skills/cv/scripts/
@@ -23,22 +25,23 @@ cv/
 
 ## Workflow for any change
 
-1. Edit `cv/index.html`.
+1. Edit the CV's HTML (`cv/index.html` or a version; see **Versions** below).
 2. Render and check fit:
    ```bash
-   NODE_PATH=$(npm root -g) node .claude/skills/cv/scripts/render.js --png <scratch-dir>
+   NODE_PATH=$(npm root -g) node .claude/skills/cv/scripts/render.js cv/<file>.html --png <scratch-dir>
    ```
-   It prints the space left under each column in mm and exits non-zero if any column
+   The HTML path defaults to `cv/index.html`. The PDF is written next to it, named by the page's
+   `<meta name="pdf-filename">`. It prints the space left under each column in mm and exits non-zero if any column
    overflows or the page count isn't 2. Pages are fixed-height with `overflow: hidden`, so
    **overflowing text is silently clipped, not pushed to a new page**. Always read this report.
-3. Look at the PNGs (or `pdftoppm -r 70 -png cv/Noah-Diggs-CV.pdf <dir>/pg`). Check line wraps
+3. Look at the PNGs (or `pdftoppm -r 70 -png cv/<name>.pdf <dir>/pg`). Check line wraps
    by eye: stat numbers, role-title/date rows and the header contact line should each stay on one line.
-4. If you added glyphs outside basic Latin, run `pdffonts cv/Noah-Diggs-CV.pdf`. Every font
+4. If you added glyphs outside basic Latin, run `pdffonts cv/<name>.pdf`. Every font
    must be Lora or SourceSans3. A `Liberation*` or `DejaVu*` entry means a character fell
    back (this happened with `→`; see Gotchas).
 5. If you changed a colour, run `python3 .claude/skills/cv/scripts/contrast.py`.
-6. Commit `cv/index.html` **and** `cv/Noah-Diggs-CV.pdf` together. Re-rendering always rewrites
-   the PDF's timestamp, so `git checkout cv/Noah-Diggs-CV.pdf` if the HTML didn't change.
+6. Commit the HTML **and** its PDF together. Re-rendering always rewrites the PDF's timestamp,
+   so `git checkout` any PDF whose HTML didn't change.
 
 Playwright and Chromium are preinstalled in cloud sessions (`/opt/pw-browsers`). Don't run
 `playwright install`. Locally, `npx playwright` or Chrome's Print → Save as PDF (margins: None,
@@ -71,6 +74,26 @@ the minimums below.
 - **Skill**: `.skill` > `dt` (small caps label) + `dd`, inside a `dl`.
 - **Stat**: `.stat` > `b` (number, serif) + `span` (caption). Use the inline SVG `.to` arrow for ranges, never `→`.
 - **Project** (performance credits): `.project` > `.role` + `ul`.
+
+## Versions
+
+Each tailored CV is its own HTML file in `cv/`, sharing `fonts/` and `qr-code.png`.
+
+| File | For | Notes |
+|---|---|---|
+| `index.html` | K-12 / cross-divisional roles | Full CV: summary, philosophy + quote, nationality/DOB/work-rights line, MUN in detail |
+| `lower-school-music.html` | Lower School / elementary music roles | From Noah's "Lower School Music Draft 1". No facts line or philosophy. KPO's concurrent deployments are nested `.sub` blocks. Less text overall, so it adds `roomy` to each `.page` |
+
+To make a new version: copy the closest file, change `<title>` and `<meta name="pdf-filename">`,
+replace the body content, and keep the `<style>` block unless the change is specific to that
+version. Add version-only CSS at the end of the block with a comment saying why, as
+`lower-school-music.html` does for `.sub` and `.roomy`. If you change the shared design system
+(fonts, colours, type scale), make the change in **every** version and re-export every PDF.
+
+**Filling the space.** A last page that ends 3–6 cm early is normal and fine. Don't pad Noah's
+text to fill it. When a version is clearly short, open up the vertical rhythm with a page-level
+class (like `.roomy`: larger section, org, bullet and item gaps) rather than enlarging the type
+past the scale below. When it's long, move whole blocks between pages first.
 
 ## Design system
 
@@ -135,7 +158,7 @@ Rules:
 - After any change near it, verify it still decodes from the exported page:
   ```bash
   pip install -q opencv-python-headless
-  pdftoppm -r 300 -f 1 -l 1 -png cv/Noah-Diggs-CV.pdf /tmp/qr
+  pdftoppm -r 300 -f 1 -l 1 -png cv/<name>.pdf /tmp/qr
   python3 -c "import cv2;print(cv2.QRCodeDetector().detectAndDecode(cv2.imread('/tmp/qr-1.png'))[0])"
   ```
 
@@ -159,4 +182,4 @@ Rules:
 - **Clipping, not reflow**: see Workflow step 2.
 - The taupe `body` background around the pages (`#8A7A67`) is for on-screen viewing only and
   disappears in print (`@media print`).
-- `cv/index.html` is `noindex` and not linked from the site nav. It is a print source, not a web page.
+- The CV HTML files are `noindex` and not linked from the site nav. It is a print source, not a web page.
