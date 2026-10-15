@@ -10,7 +10,7 @@ no build step required.
 - `mun.html` — MUN Journal (blog-style entries, newest first; copy an `<article>` block to add one)
 - `ds/` — design system (styles, tokens, components)
 - `brand/` — logo assets
-- `cv/` — printable 2-page A4 CVs, each an HTML source plus its print-ready PDF (QR code on page 1): `index.html` → full CV, `lower-school-music.html` → Lower School Music CV. How it works: `.claude/skills/cv/SKILL.md`
+- `cv/` — printable 2-page A4 CVs, each an HTML source plus its print-ready PDF (QR code on page 1): `index.html` → full CV, `lower-school-music.html` → Lower School Music CV, `strings-orchestra.html` → Strings & Orchestra CV. How it works: `.claude/skills/cv/SKILL.md`
 - `support.js`, `image-slot.js` — page runtime (loads React/Babel from a CDN at
   runtime and renders the page's components; also restores photos from
   `.image-slots.state.json`)

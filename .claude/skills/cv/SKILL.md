@@ -14,6 +14,7 @@ across a table.
 cv/
   index.html                             full CV (K-12)          → Noah-Diggs-CV.pdf
   lower-school-music.html                Lower School Music CV   → Noah-Diggs-CV-Lower-School-Music.pdf
+  strings-orchestra.html                 Strings & Orchestra CV  → Noah-Diggs-CV-Strings-Orchestra.pdf
                                          each source holds all its markup and CSS (no build step, no external requests);
                                          each PDF is committed: re-export after every change
   qr-code.png           QR code (900×900, cropped from Noah's branded original, quiet zone kept)
@@ -83,6 +84,7 @@ Each tailored CV is its own HTML file in `cv/`, sharing `fonts/` and `qr-code.pn
 |---|---|---|
 | `index.html` | K-12 / cross-divisional roles | Full CV: summary, philosophy + quote, nationality/DOB/work-rights line, MUN in detail |
 | `lower-school-music.html` | Lower School / elementary music roles | From Noah's "Lower School Music Draft 1". No facts line or philosophy. KPO's concurrent deployments are nested `.sub` blocks. Less text than the full CV, so `roomy` opens the spacing on page 1 and page 2's side panel (page 2's main column is full at standard spacing) |
+| `strings-orchestra.html` | Strings, orchestra and ensemble roles | From Noah's "Strings Orchestra Draft 1". Stamford's ensemble work leads, with an italic `.intro` line; MUN is cut down to "Additional School Contributions". Page 1's main column is full, so `roomy` goes only on page 1's `aside` and on all of page 2 |
 
 To make a new version: copy the closest file, change `<title>` and `<meta name="pdf-filename">`,
 replace the body content, and keep the `<style>` block unless the change is specific to that

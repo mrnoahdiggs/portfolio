@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="pdf-filename" content="Noah-Diggs-CV-Strings-Orchestra.pdf">
+<title>Noah Diggs CV: Strings &amp; Orchestra</title>
+<style>
+  @font-face { font-family: 'Lora'; src: url(fonts/lora.woff2) format('woff2'); font-weight: 400 700; font-style: normal; }
+  @font-face { font-family: 'Lora'; src: url(fonts/lora-italic.woff2) format('woff2'); font-weight: 400 700; font-style: italic; }
+  @font-face { font-family: 'Source Sans 3'; src: url(fonts/sourcesans3.woff2) format('woff2'); font-weight: 400 700; font-style: normal; }
+  @font-face { font-family: 'Source Sans 3'; src: url(fonts/sourcesans3-italic.woff2) format('woff2'); font-weight: 400 700; font-style: italic; }
+
+  :root {
+    --ink: #241C15;
+    --ink-2: #362B21;
+    --muted: #4B3E31;
+    --rule: #C7BBA9;
+    --side: #FBF6EF;
+    --orange: #E85C00;      /* decorative only: bars, bullets */
+    --orange-text: #9A3800; /* orange for text, 6.6:1 on cream */
+    --teal: #12454A;        /* 9.9:1 on cream */
+    --serif: 'Lora', Georgia, serif;
+    --sans: 'Source Sans 3', Arial, sans-serif;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #8A7A67; font: 400 9.6pt/1.4 var(--sans); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+
+  .page {
+    width: 210mm; height: 297mm; margin: 10mm auto; background: #fff;
+    display: grid; grid-template-columns: 1fr 58mm; grid-template-rows: auto 1fr auto;
+    overflow: hidden; position: relative;
+  }
+  @media print {
+    body { background: none; }
+    .page { margin: 0; break-after: page; }
+    .page:last-child { break-after: auto; }
+  }
+
+  /* ---------- header (page 1) ---------- */
+  header {
+    grid-column: 1 / -1; display: grid; grid-template-columns: 1fr auto; gap: 8mm;
+    padding: 11mm 13mm 6mm; border-bottom: 1.2mm solid var(--orange);
+  }
+  .eyebrow { font: 700 8.5pt/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--orange-text); }
+  h1 { font: 600 25pt/1.05 var(--serif); letter-spacing: -.01em; margin: 2.2mm 0 2.6mm; }
+  h1 span { display: block; }
+  .contact { font-size: 9.4pt; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: .6mm 3.2mm; }
+  .contact a, .contact span { white-space: nowrap; }
+  .contact .sep { color: var(--orange); }
+  .facts { margin-top: 1.6mm; font-size: 8.6pt; color: var(--muted); }
+  .facts b { font-weight: 600; color: var(--ink-2); }
+
+  .qr { width: 46mm; text-align: center; align-self: center; }
+  .qr img { width: 46mm; height: 46mm; display: block; }
+  .qr .cta {
+    margin-top: 1.4mm; font: 700 8pt/1.25 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--teal);
+  }
+  .qr .url { font-size: 7pt; color: var(--muted); }
+
+  /* ---------- page-2 running header ---------- */
+  .runhead {
+    grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline;
+    padding: 9mm 13mm 3mm; border-bottom: .3mm solid var(--rule);
+  }
+  .runhead .name { font: 600 11pt/1 var(--serif); }
+  .runhead .meta { font-size: 8.6pt; color: var(--muted); }
+
+  /* ---------- columns ---------- */
+  main { padding: 5.5mm 7mm 0 13mm; }
+  aside { background: var(--side); padding: 5.5mm 8mm 0 6mm; border-left: .3mm solid var(--rule); }
+
+  h2 {
+    font: 700 9pt/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--teal);
+    display: flex; align-items: center; gap: 2.2mm; margin: 0 0 2.4mm;
+  }
+  h2::after { content: ""; flex: 1; height: .3mm; background: var(--rule); }
+  aside h2::after { display: none; }
+  section + section { margin-top: 4.6mm; }
+
+  p { margin-bottom: 1.6mm; }
+  .lead { font-size: 9.6pt; }
+
+  blockquote {
+    font: italic 400 10.4pt/1.35 var(--serif); color: var(--ink);
+    border-left: .8mm solid var(--orange); padding: .4mm 0 .4mm 3mm; margin: .6mm 0 2.4mm;
+  }
+  blockquote cite { display: block; font: 400 8.4pt/1.3 var(--sans); color: var(--muted); margin-top: .8mm; font-style: normal; }
+
+  /* roles */
+  .org { margin-top: 3.4mm; }
+  .org:first-of-type { margin-top: 0; }
+  .org-name { font: 600 11pt/1.2 var(--serif); }
+  .org-desc { font-size: 8.6pt; color: var(--muted); }
+  .role { display: flex; justify-content: space-between; gap: 3mm; margin-top: 1.8mm; align-items: baseline; }
+  .role-title { font-weight: 700; font-size: 9.8pt; }
+  .dates { font: 600 8.6pt/1 var(--sans); color: var(--orange-text); white-space: nowrap; }
+  .role + .role { margin-top: .6mm; }
+
+  ul { list-style: none; margin-top: 1.2mm; }
+  li { position: relative; padding-left: 3.2mm; margin-bottom: 1mm; }
+  li::before { content: ""; position: absolute; left: 0; top: 1.45mm; width: 1.2mm; height: 1.2mm; border-radius: 50%; background: var(--orange); }
+  li b { font-weight: 600; }
+
+  /* sidebar items */
+  .item { margin-bottom: 2.6mm; }
+  .item-title { font-weight: 700; font-size: 9.2pt; line-height: 1.3; }
+  .item-meta { font-size: 8.6pt; color: var(--muted); line-height: 1.35; }
+  .skill { margin-bottom: 2.3mm; font-size: 8.8pt; line-height: 1.38; }
+  .skill dt { font: 700 8pt/1.3 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--orange-text); margin-bottom: .4mm; }
+
+  .stats { display: grid; gap: 3.4mm; }
+  .stat { display: grid; grid-template-columns: 21mm 1fr; align-items: baseline; gap: 1.6mm; }
+  .stat b { font: 700 13pt/1 var(--serif); color: var(--orange-text); }
+  .stat .to { width: 2.4mm; height: 2mm; margin: 0 .5mm; vertical-align: .3mm; }
+  .stat span { font-size: 8.6pt; line-height: 1.3; color: var(--ink-2); }
+
+  .project { margin-top: 2.6mm; }
+  .project .role { margin-top: 0; }
+
+  footer {
+    grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center;
+    padding: 3mm 13mm 6mm; font: 600 7.8pt/1 var(--sans); color: var(--muted); letter-spacing: .08em;
+    border-top: .3mm solid var(--rule);
+  }
+  footer img { height: 7mm; width: auto; opacity: .85; }
+
+  /* concurrent deployments listed under a parent role */
+  .sub { margin-top: 2.4mm; padding-left: 3mm; border-left: .3mm solid var(--rule); }
+  .sub .role { margin-top: 0; }
+  .sub .org-desc { margin-top: .3mm; }
+  .note { font-size: 9pt; margin-top: 1.2mm; }
+  /* this version has less text than the full CV: open up the vertical rhythm where a column has room
+     (here: page 1's side panel and all of page 2; page 1's main column is full at the standard spacing) */
+  .roomy section + section { margin-top: 7mm; }
+  .roomy .org { margin-top: 5.5mm; }
+  .roomy li { margin-bottom: 1.7mm; }
+  .roomy .item { margin-bottom: 4mm; }
+  .roomy .stats { gap: 5.2mm; }
+  .roomy .skill { margin-bottom: 3.6mm; }
+  .roomy .sub, .roomy .project { margin-top: 4.2mm; }
+  .roomy .role + .role { margin-top: 1.2mm; }
+  .intro { font-size: 9pt; font-style: italic; color: var(--muted); margin: 1mm 0 0; }
+  .skills-text p { font-size: 8.8pt; line-height: 1.38; margin-bottom: 1.8mm; }
+</style>
+</head>
+<body>
+
+<!-- ============================== PAGE 1 ============================== -->
+<div class="page">
+  <header>
+    <div>
+      <div class="eyebrow">Strings &amp; Orchestra Educator &nbsp;·&nbsp; Cellist &nbsp;·&nbsp; Composer</div>
+      <h1><span>Noah Gabriel</span><span>Juliano Diggs</span></h1>
+      <div class="contact">
+        <span>Singapore</span><span class="sep">/</span>
+        <a href="tel:+6593513361">+65 9351 3361</a><span class="sep">/</span>
+        <a href="mailto:noahgabrieldiggs@gmail.com">noahgabrieldiggs@gmail.com</a>
+      </div>
+      <div class="contact" style="margin-top:.6mm">
+        <a href="https://noahdiggs.com">noahdiggs.com</a><span class="sep">/</span>
+        <a href="https://linkedin.com/in/noahdiggs">linkedin.com/in/noahdiggs</a>
+      </div>
+    </div>
+    <a class="qr" href="https://noahdiggs.com/qr">
+      <img src="qr-code.png" alt="QR code linking to noahdiggs.com/qr">
+      <div class="cta">Scan for portfolio,<br>videos &amp; references</div>
+    </a>
+  </header>
+
+  <main>
+    <section>
+      <h2>Professional Summary</h2>
+      <p class="lead">K–12 certified music educator and cellist with seven years of teaching experience across individual instruction, orchestral sectionals and school ensembles. I teach cello from beginner to advanced levels and violin, viola and double bass at beginner level, alongside experience in high-school strings co-direction and advanced chamber music. My approach uses individual listening during sectionals to guide coaching and repertoire adaptation, drawing on composition and arranging skills to respond to players’ technical readiness within ensemble work.</p>
+    </section>
+
+    <section>
+      <h2>Teaching &amp; Ensemble Experience</h2>
+      <div class="org">
+        <div class="org-name">Stamford American International School, Singapore</div>
+        <div class="org-desc">IB Primary Years Programme / US Washington State standards</div>
+        <div class="role"><span class="role-title">Elementary Music Teacher</span><span class="dates">Aug 2023 – Present</span></div>
+        <p class="intro">Ensemble responsibilities alongside the classroom appointment:</p>
+        <ul>
+          <li><b>Ensemble conducting:</b> Conducted school concerts across string ensembles and elementary choirs, with experience directing beginner strings and sharing conducting responsibilities for high-school strings and elementary choir performances.</li>
+          <li><b>Strings and chamber coaching:</b> Co-direct and coach the high-school string ensemble of up to 40 players alongside its founding lead teacher, and coach advanced Grades 6–12 chamber groups of up to eight musicians.</li>
+          <li><b>Assessment and repertoire adaptation:</b> Assess individual players during sectionals to identify technical and musical needs, then provide targeted coaching and adapt ensemble repertoire through rearrangement or newly composed sections.</li>
+          <li><b>Chamber arranging:</b> Regularly arrange music around pupils’ musical interests, matching technical demands to their proficiency and tailoring parts to each chamber group’s instrumentation.</li>
+          <li><b>Beginner ensembles:</b> Led Grades 1–2 Beginner Strings in AY 2023–24 and 2024–25, introducing ensemble playing to pupils with prior instrumental experience through repertoire matched to their technical readiness.</li>
+          <li><b>Programme development:</b> Founded Young Cellists for Grades 1–2 in AY 2026–27, establishing an opportunity for pupils to continue cello learning after kindergarten.</li>
+          <li><b>Student creativity and outreach:</b> Founded the Chamber Outreach Club, involving five advanced pupils in collaborative arranging and rehearsing music for planned community performances.</li>
+          <li><b>Classroom musicianship:</b> Teach approximately 250 pupils across 12 classes weekly, integrating notation, singing, instrumental playing, composition and listening within Grades 1–3 music.</li>
+          <li><b>Curriculum collaboration:</b> Redesigned Grades 1–3 music curriculum with the PYP Coordinator, aligning musical learning with Units of Inquiry and Washington State standards; adopted by the elementary school in AY 2024–25.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <aside class="roomy">
+    <section>
+      <h2>Qualifications</h2>
+      <div class="item">
+        <div class="item-title">Washington, DC Teaching Licence — K–12 Music</div>
+        <div class="item-meta">Valid to 12 December 2029</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Bachelor of Music (Hons.), Music Composition</div>
+        <div class="item-meta">National University of Singapore<br>Aug 2015 – May 2019<br>Full scholarship</div>
+      </div>
+      <div class="item">
+        <div class="item-title">TeachNow Certification, K–12 Education</div>
+        <div class="item-meta">Moreland University, USA<br>Jul 2022 – Apr 2023</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Suzuki Grade 1 Teaching Certification</div>
+        <div class="item-meta">Suzuki Music Association of Indonesia<br>Jun 2023 · 42 hours</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>At a Glance</h2>
+      <div class="stats">
+        <div class="stat"><b>7</b><span>years of music teaching</span></div>
+        <div class="stat"><b>~60</b><span>individual cello pupils, early years to Grade 8</span></div>
+        <div class="stat"><b>40</b><span>players at most in the co-directed high-school string ensemble</span></div>
+        <div class="stat"><b>100%</b><span>exam pass rate, 50 cello &amp; theory pupils</span></div>
+        <div class="stat"><b>~5</b><span>large-scale youth concerts produced</span></div>
+      </div>
+    </section>
+  </aside>
+
+  <footer>
+    <span>NOAH DIGGS — CURRICULUM VITAE</span>
+    <span>1 / 2</span>
+  </footer>
+</div>
+
+<!-- ============================== PAGE 2 ============================== -->
+<div class="page roomy">
+  <div class="runhead">
+    <span class="name">Noah Gabriel Juliano Diggs</span>
+    <span class="meta">noahgabrieldiggs@gmail.com &nbsp;·&nbsp; +65 9351 3361 &nbsp;·&nbsp; noahdiggs.com</span>
+  </div>
+
+  <main>
+    <section>
+      <h2>Teaching &amp; Ensemble Experience <span style="color:var(--muted);letter-spacing:.06em">(cont.)</span></h2>
+      <div class="org">
+        <div class="org-name">Kids’ Philharmonic Orchestra, Singapore</div>
+        <div class="role"><span class="role-title">Senior Music Instructor</span><span class="dates">Jun 2019 – Jul 2023</span></div>
+        <div class="role"><span class="role-title" style="font-weight:600">Additional appointment: Producer</span><span class="dates">Aug 2022 – Jul 2023</span></div>
+        <ul>
+          <li><b>Cello instruction:</b> Taught approximately 60 individual cello pupils aged 4–18 over the appointment, from early-years learners through ABRSM Grade 8, alongside group and classroom musicianship teaching.</li>
+          <li><b>Curriculum and assessment:</b> Designed Suzuki-, ABRSM- and Trinity-aligned curricula and assessments; prepared 50 studio pupils for cello and music theory examinations with a 100% pass rate.</li>
+          <li><b>Orchestra conducting:</b> Served as Conductor and Director of the Seed Orchestra for pupils at ABRSM Grades 3–4 level, leading rehearsals and preparing young instrumentalists for ensemble performance.</li>
+          <li><b>Cello sectionals:</b> Led sectional training for the Junior Orchestra (ABRSM Grades 5–7) and Senior Orchestra (Grade 8 and above), providing focused cello coaching to support technical preparation and ensemble playing.</li>
+          <li><b>Family partnerships:</b> Communicated progress through structured reporting and individualised growth recommendations, keeping parents informed about learning priorities.</li>
+          <li><b>Concert delivery:</b> Produced approximately five large-scale youth concerts during the Producer appointment, coordinating with venues and guest artists on staging and delivery, alongside smaller internal performances.</li>
+        </ul>
+
+        <div class="sub">
+          <div class="role"><span class="role-title">School deployment: Stamford Music Academy, SAIS</span><span class="dates">Jul 2022 – Jul 2023</span></div>
+          <div class="org-desc">Part-time Strings Instructor, concurrent with KPO appointment</div>
+          <p class="note">Taught Grades 4–5 pupils in choir and string orchestra.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Additional School Contributions</h2>
+      <div class="org">
+        <div class="org-name">Stamford American International School</div>
+        <div class="role"><span class="role-title">Schoolwide Model United Nations Coordinator</span><span class="dates">Aug 2026 – Present</span></div>
+        <div class="role"><span class="role-title">Middle School Model United Nations Director</span><span class="dates">Mar 2025 – Present</span></div>
+        <ul>
+          <li><b>Event coordination:</b> Lead Middle and High School conference planning and delivery, coordinating school teams, guest speakers and performance arrangements across participating schools.</li>
+          <li><b>Student travel and care:</b> Organised domestic and international student conference travel, managing logistics, risk assessment and duty of care.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Performance &amp; Composition</h2>
+      <ul>
+        <li><b>Cellist:</b> Performed with the Philadelphia Youth Orchestra and Yong Siew Toh Conservatory of Music Orchestra Institute, with performance experience at Carnegie Hall, Victoria Concert Hall and Esplanade Concert Hall.</li>
+        <li><b>Composer and arranger:</b> Works performed by Ensemble Handwerk, musicians of the Philadelphia Orchestra and Harrow School, London.</li>
+      </ul>
+    </section>
+  </main>
+
+  <aside>
+    <section>
+      <h2>Selected Professional Development</h2>
+      <div class="item">
+        <div class="item-title">UDL Fellows</div>
+        <div class="item-meta">Novak Educational Consulting<br>2023–2024 · 45 hours</div>
+      </div>
+      <div class="item">
+        <div class="item-title">IB PYP Category 2: Evidencing Learning</div>
+        <div class="item-meta">IB Online Professional Development<br>2024 · 16 hours</div>
+      </div>
+      <div class="item">
+        <div class="item-title">AMIS Music Educators’ Conference</div>
+        <div class="item-meta">Saigon South International School<br>2024 · 10 hours</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Workshop in Dalcroze Eurhythmics</div>
+        <div class="item-meta">AMIS · 2024 · 6 hours</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Instruments, Technology &amp; Safeguarding</h2>
+      <dl>
+        <div class="skill"><dt>Instrumental teaching</dt><dd>Cello, beginner to advanced; violin, viola and double bass, beginner level</dd></div>
+        <div class="skill"><dt>Performance</dt><dd>Cello is the principal performance instrument; working familiarity with piano</dd></div>
+        <div class="skill"><dt>Music notation</dt><dd>Sibelius and MuseScore</dd></div>
+        <div class="skill"><dt>Recording &amp; production</dt><dd>Logic Pro, GarageBand and Audacity; live sound and recording</dd></div>
+        <div class="skill"><dt>Languages</dt><dd>English: native</dd></div>
+        <div class="skill"><dt>Safeguarding &amp; first aid</dt><dd>Annual safeguarding training; CPR AED All Ages (HSI), valid to March 2028</dd></div>
+      </dl>
+    </section>
+  </aside>
+
+  <footer>
+    <span>NOAH DIGGS — CURRICULUM VITAE</span>
+    <span>2 / 2</span>
+  </footer>
+</div>
+
+</body>
+</html>
