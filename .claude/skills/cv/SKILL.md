@@ -15,6 +15,7 @@ cv/
   index.html                             full CV (K-12)          → Noah-Diggs-CV.pdf
   lower-school-music.html                Lower School Music CV   → Noah-Diggs-CV-Lower-School-Music.pdf
   strings-orchestra.html                 Strings & Orchestra CV  → Noah-Diggs-CV-Strings-Orchestra.pdf
+  arts-coordination.html                 Arts Coordination CV    → Noah-Diggs-CV-Arts-Coordination-Leadership.pdf
                                          each source holds all its markup and CSS (no build step, no external requests);
                                          each PDF is committed: re-export after every change
   qr-code.png           QR code (900×900, cropped from Noah's branded original, quiet zone kept)
@@ -85,6 +86,7 @@ Each tailored CV is its own HTML file in `cv/`, sharing `fonts/` and `qr-code.pn
 | `index.html` | K-12 / cross-divisional roles | Full CV: summary, philosophy + quote, nationality/DOB/work-rights line, MUN in detail |
 | `lower-school-music.html` | Lower School / elementary music roles | From Noah's "Lower School Music Draft 1". No facts line or philosophy. KPO's concurrent deployments are nested `.sub` blocks. Less text than the full CV, so `roomy` opens the spacing on page 1 and page 2's side panel (page 2's main column is full at standard spacing) |
 | `strings-orchestra.html` | Strings, orchestra and ensemble roles | From Noah's "Strings Orchestra Draft 1". Stamford's ensemble work leads, with an italic `.intro` line; MUN is cut down to "Additional School Contributions". Page 1's main column is full, so `roomy` goes only on page 1's `aside` and on all of page 2. **Teal accent** instead of orange, with a light teal panel (`--side` #EAF6F6) and teal hairlines (`--rule` #9BD6D9) |
+| `arts-coordination.html` | Performing arts, programme coordination and leadership roles | From Noah's "Arts Coordination Leadership Draft 1". **Wine accent** (#A63A5E decoration, #8E2F4F text, 7.3:1) on the cream panel. Esplanade productions sit on page 1 so the whole MUN role fits on page 2 with Kids' Philharmonic. `roomy` on page 1's `aside` and all of page 2 |
 
 To make a new version: copy the closest file, change `<title>` and `<meta name="pdf-filename">`,
 replace the body content, and keep the `<style>` block unless the change is specific to that
@@ -144,7 +146,7 @@ browser User-Agent and download the `U+0000-00FF` file.
 
 Rules:
 - **Never set text in `--accent`.** In orange it's 3.3:1, which fails even screen guidelines and turns to pale grey in print. Use `--accent-text`.
-- **Accent colour per version.** The highlights come only from `--accent` / `--accent-text`, so recolouring a version means changing those two values. The default is orange (#E85C00 / #9A3800). `strings-orchestra.html` uses teal: #227D83 for decoration and #175A60 for text (7.3:1). Keep `--teal` (#12454A) for section headings in every version. For any new accent, pick the text shade with `contrast.py` (≥ 6:1 on the panel).
+- **Accent colour per version.** The highlights come only from `--accent` / `--accent-text`, so recolouring a version means changing those two values. The default is orange (#E85C00 / #9A3800). `strings-orchestra.html` uses teal: #227D83 for decoration and #175A60 for text (7.3:1). `arts-coordination.html` uses wine: #A63A5E and #8E2F4F. Gold was ruled out: its decoration shade nearly disappears on white and in B&W, and its text shade is a muddy olive below 6:1. Keep `--teal` (#12454A) for section headings in every version. For any new accent, pick the text shade with `contrast.py` (≥ 6:1 on the panel).
 - Hold every text colour to **≥ 6:1 on the cream panel** (`contrast.py` flags anything lower). That leaves headroom for cheap lasers, toner dithering and black-and-white copies; the burnt orange and dark teal both become dark grey in B&W.
 - Don't use light greys for "muted" text; small grey type speckles on laser printers. `--muted` is a dark brown on purpose.
 - `print-color-adjust: exact` is set so the panel tint and accent rule print.
