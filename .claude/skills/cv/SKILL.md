@@ -82,7 +82,7 @@ Each tailored CV is its own HTML file in `cv/`, sharing `fonts/` and `qr-code.pn
 | File | For | Notes |
 |---|---|---|
 | `index.html` | K-12 / cross-divisional roles | Full CV: summary, philosophy + quote, nationality/DOB/work-rights line, MUN in detail |
-| `lower-school-music.html` | Lower School / elementary music roles | From Noah's "Lower School Music Draft 1". No facts line or philosophy. KPO's concurrent deployments are nested `.sub` blocks. Less text overall, so it adds `roomy` to each `.page` |
+| `lower-school-music.html` | Lower School / elementary music roles | From Noah's "Lower School Music Draft 1". No facts line or philosophy. KPO's concurrent deployments are nested `.sub` blocks. Less text than the full CV, so `roomy` opens the spacing on page 1 and page 2's side panel (page 2's main column is full at standard spacing) |
 
 To make a new version: copy the closest file, change `<title>` and `<meta name="pdf-filename">`,
 replace the body content, and keep the `<style>` block unless the change is specific to that
